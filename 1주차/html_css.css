@@ -1,35 +1,126 @@
-body {padding: 0; margin: 0;}
+body {padding: 0; margin: 0; text-decoration: none; font-family: 'NanumBarunGothic'; color: #525252}
+ul { list-style: none; }
+a { text-decoration: none; color: inherit;}
 
+
+/* nav */
 .nav-box { 
     height: 149px; width: 100%; background-color: #FFFFFF; box-sizing: border-box;
     border-top: 5px solid #E10029; border-bottom: 1px solid #F79557; position: fixed; top: 0; left: 0; z-index: 999;
 }
 
 .nav-main {
-    width: 1000px; height: 104px; display: flex; margin: auto;
+    width: 990px; height: 104px; display: flex; margin: auto;
 }
 
 .nav-main .nav-img { 
-    background-color: blue; width: 300px; height:100%; margin: auto;
+    width: 300px; height:100%; margin: auto; 
 } 
 
+.nav-main .nav-img img {
+    margin-top: 27px
+}
+
+
+/* nav - login menu */
 .nav-main .nav-btn { 
     width: 100%; height:100%; margin: auto; display: flex;
-    flex-direction: column;
+    flex-direction: column; display: flex; justify-items: end;
 } 
 
-.nav-main .nav-btn .nav-login {
-    background-color: green; width: 100%; height: 60px;
+ul.nav-login {
+    height: 30px; list-style: none; padding: 0; margin: 0;  box-sizing: border-box;
+    text-align: end;
 }
 
-.nav-main .nav-btn .nav-menu {
-    background-color: gray; width: 100%; height:100%;
+ul.nav-login li {
+    margin-left: 9px; padding: 15px 0 0 10px; display: inline-block;
+    font-size: 14px; border-left: 1px solid #E6E6E6; line-height: 1.1; letter-spacing: -0.03em;
 }
 
+ul.nav-login li:first-child {
+    border: none;
+}
+
+ul.nav-login li:last-child {
+    color: #D91032;
+}
+
+
+
+/* nav - main menu */
+.nav-menu {
+    height: 57px; width: 782px; line-height: 16.5px; 
+    margin-bottom: 0; margin-top: auto;
+    letter-spacing: -0.3em;
+}
+
+.nav-menu a {
+    height: 57px; padding: 0 25px 0 25px;
+}
+
+.nav-menu a img {
+    margin-top: 11px;
+}
+
+.search-btn {
+     width: 75px; height: 24px;  float: right; margin-top: 6px; 
+}
+
+.search-btn img {
+    cursor: pointer;
+}
+
+
+.search-btn img:last-child {
+    margin-left: 25px; margin-bottom: 2px;
+}
+
+
+
+
+/* nav - bottom detail menu */
 .nav-sub {
     width: 100%; border-top: 1px solid #C4C6CA;
 }
 
+.sub-list {
+    background: gray; width: 990px; margin: auto;
+}
+
+.sub-list ul {
+    padding:0; margin: 0; height: 39px;;
+}
+
+.sub-list ul li {
+    display: inline-block; height: 100%; margin-right: -4px;
+    background: lightblue; text-align: center;
+}
+
+.sub-list ul li a {
+    display: inline-block;
+    height:100%;
+}
+
+.home a {
+    width:40px;
+}
+
+.home a img {
+}
+
+
 .content { padding-top: 150px; height: 1200px;}
 
 .footer {width: 100%; height: 120px; background-color: #F4F5F9; border-top: 1px solid #E42F51;}
+
+
+
+/* font - noonnu.cc */
+@font-face {
+    font-family: 'NanumBarunGothic';
+    font-style: normal;
+    font-weight: 400;
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+}
