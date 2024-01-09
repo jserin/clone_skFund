@@ -85,30 +85,38 @@ ul.nav-login li:last-child {
 }
 
 .sub-list {
-    background: gray; width: 990px; margin: auto;
+    width: 990px; margin: auto;
 }
 
 .sub-list ul {
-    padding:0; margin: 0; height: 39px;;
+    padding:0; margin: 0; height: 40px; display: flex;
 }
 
 .sub-list ul li {
-    display: inline-block; height: 100%; margin-right: -4px;
-    background: lightblue; text-align: center;
+    height: 100%; font-size: 14px; border-left: 1px solid #C3C5C9;
 }
 
 .sub-list ul li a {
-    display: inline-block;
-    height:100%;
+    display: block;
+    height: 38px;
+    line-height: 38px;
+}
+
+.home {
+    text-align: center;
 }
 
 .home a {
-    width:40px;
+    width: 40px;
 }
 
 .home a img {
+    margin-top: 13px;
 }
 
+.products a{
+    width: 180px;
+}
 
 .content { padding-top: 150px; height: 1200px;}
 
