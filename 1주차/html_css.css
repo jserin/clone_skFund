@@ -35,7 +35,7 @@ ul.nav-login {
 
 ul.nav-login li {
     margin-left: 9px; padding: 15px 0 0 10px; display: inline-block;
-    font-size: 14px; border-left: 1px solid #E6E6E6; line-height: 1.1; letter-spacing: -0.03em;
+    font-size: 14px; border-left: 1px solid #E6E6E6; line-height: 1.1; letter-spacing: -0.4px;
 }
 
 ul.nav-login li:first-child {
@@ -89,17 +89,21 @@ ul.nav-login li:last-child {
 }
 
 .sub-list ul {
-    padding:0; margin: 0; height: 40px; display: flex;
+    padding:0; margin: 0; height: 38px; display: flex; box-sizing: border-box;
 }
 
 .sub-list ul li {
-    height: 100%; font-size: 14px; border-left: 1px solid #C3C5C9;
+    font-size: 14px; border-left: 1px solid #C3C5C9;
 }
 
 .sub-list ul li a {
-    display: block;
+    display: block; font-size: 15px; letter-spacing: -0.5px;
     height: 38px;
     line-height: 38px;
+}
+
+.sub-list ul li a:hover {
+    color: #292e9d;
 }
 
 .home {
@@ -114,13 +118,252 @@ ul.nav-login li:last-child {
     margin-top: 13px;
 }
 
-.products a{
-    width: 180px;
+
+
+.products {
+    box-sizing: border-box; width: 181px;
 }
 
+.products a{
+    width: 180px; display: flex;
+}
+
+.sub-list ul li a span {
+    padding: 0 42px 0 20px;
+}
+
+.products a img {
+    float: right; padding-top: 16px; padding-right: 15px;
+}
+
+.prod-sub {
+    display: none;
+    width: 180px; height: 487px; margin-left: -1px;
+    border: 1px solid #C3C5C9;
+}
+
+.products:hover .prod-sub {
+    display: block;
+}
+
+.prod-sub ul {
+    display: block;
+} 
+
+.prod-sub ul li {
+    height: 18px; margin-bottom: 0.5px;
+    border: none; padding: 10px 40px 10px 20px; font-size: 15px; letter-spacing: -0.5px;
+    cursor: pointer;
+}
+
+.prod-sub ul li:hover {
+    height: 17px; margin-top: -1px;
+    background: #FBFCFC; border-top: 1px solid #C3C5C9; border-bottom: 1px solid #C3C5C9;
+}
+
+.prod-sub ul li:first-child {
+    margin-top: 13px;
+}
+
+.prod-sub ul li:first-child:hover {
+    margin-top: 12px;
+}
+
+.prod-sub ul li:last-child {
+    margin-bottom: 13px;
+}
+
+
+
+.funds {
+    width: 230px;
+}
+
+.funds a {
+    width: 230px;
+}
+
+.funds a img {
+    float: right; padding-top: 16px; padding-right: 15px;
+}
+
+.fund-sub {
+    display: none;
+    width: 230px; height: 641px; margin-left: -1px;
+    border: 1px solid #C3C5C9;
+}
+
+.funds:hover .fund-sub {
+    display: block;
+}
+
+.fund-sub ul {
+    display: block;
+} 
+
+.fund-sub ul li {
+    height: 18px; margin-bottom: 0.5px;
+    border: none; padding: 10px 40px 10px 20px; font-size: 15px; letter-spacing: -0.5px;
+    cursor: pointer;
+}
+
+.fund-sub ul li:first-child {
+    margin-top: 13px;
+}
+
+.fund-sub ul li:hover {
+    height: 17px; margin-top: -1px;
+    background: #FBFCFC; border-top: 1px solid #C3C5C9; border-bottom: 1px solid #C3C5C9;
+}
+
+.fund-sub ul li:first-child:hover {
+    margin-top: 12px;
+}
+
+
+
+.search-menu {
+    width: 230px;
+}
+
+.search-menu a{
+    width: 230px; background: #FBFCFC; border-right: 1px solid #C3C5C9;
+    color:#525252; font-family: 'NanumBarunGothicB';
+}
+
+.search-menu a img {
+    float: right; padding-top: 15px; padding-right: 15px;
+}
+
+.last-sub {
+    display: none;
+    width: 230px; height: 333px; margin-left: -1px;
+    border: 1px solid #C3C5C9; 
+}
+
+.search-menu:hover .last-sub {
+    display: block;
+}
+
+.last-sub ul {
+    display: block;
+} 
+
+.last-sub ul li {
+    height: 18px; margin-bottom: 0.5px;
+    border: none; padding: 10px 40px 10px 20px; font-size: 15px; letter-spacing: -0.5px;
+    cursor: pointer;
+}
+
+.last-sub ul li:first-child {
+    margin-top: 13px;
+}
+
+.last-sub ul li:hover {
+    height: 17px; margin-top: -1px;
+    background: #FBFCFC; border-top: 1px solid #C3C5C9; border-bottom: 1px solid #C3C5C9;
+}
+
+.last-sub ul li:first-child:hover {
+    margin-top: 12px;
+}
+
+
+
+
+
+
+/* content */
 .content { padding-top: 150px; height: 1200px;}
 
-.footer {width: 100%; height: 120px; background-color: #F4F5F9; border-top: 1px solid #E42F51;}
+
+
+
+
+
+
+
+
+
+
+
+
+/* footer */
+.footer {
+    width: 100%; height: 123.75px; background-color: #F4F5F9;
+    box-sizing: border-box;
+}
+
+.foot-menu {
+    width: 100%; height: 53.5px; box-sizing: border-box; border-top: 1px solid #E42F51;
+    border-bottom: 1px solid #E2E2E3;
+}
+
+.foot-menu ul {
+    width: 960px; height: 16.5px; padding: 16px 0 0 0; margin: auto; letter-spacing: -0.41px;
+}
+
+.foot-menu ul li {
+    display: inline-block; font-size: 13px;
+}
+
+.foot-menu ul li:first-child a{
+    padding-left: 0; margin:0;
+}
+
+.foot-menu ul li:last-child a {
+    border-right: 1px solid #E0E1E5; border-right: none;
+}
+
+.foot-menu ul li a {
+    height: 14.3px;
+    padding: 0 13px 0 12.5px; margin-left:-4px; border-right: 1px solid #E0E1E5;
+}
+
+.foot-menu ul li:nth-child(4) {
+    color: #000000; font-family: 'NanumBarunGothicB';
+}
+
+.foot-menu ul li:nth-child(8) {
+    color: #000000; font-family: 'NanumBarunGothicB';
+}
+
+
+
+
+.foot-wrap {
+    height: 70.25px; color: #838282;
+    font-size: 13px;
+}
+
+.foot-wrap .section {
+    width: 960px; margin: auto; display: flex; padding-top:20px;
+}
+
+.foot-wrap .section .call {
+    padding-top: 9px;
+}
+
+.foot-wrap .section .call:nth-child(2) {
+    padding-left:18px;
+}
+
+.foot-wrap div .share {
+    width: 172.92px; height: 30px; display: flex;  margin-left: auto;
+}
+
+.foot-wrap div .share a {
+    width: 120px; text-align: center; margin-left: 10px; padding-top:7px;
+    border: 1px solid #1a345e;; color: #1a345e; box-sizing: border-box;
+    background: #FFFFFF; font-family: 'NanumBarunGothicB'; letter-spacing: -0.4px;
+}
+
+.foot-wrap div .share img {
+    margin-left: auto;
+}
+
+
+
 
 
 
@@ -131,4 +374,12 @@ ul.nav-login li:last-child {
     font-weight: 400;
     src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
     src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'NanumBarunGothicB';
+    font-style: normal;
+    font-weight: 700;
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot');
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.ttf') format('truetype')
 }
