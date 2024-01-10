@@ -273,13 +273,103 @@ ul.nav-login li:last-child {
 
 
 
-/* content */
-.content { padding-top: 150px; height: 1200px;}
+/* body */
+.container { 
+    width: 100%; height: 1200px;
+ }
+
+.empty {
+    height: 148px;
+}
+
+.content {
+    width: 960px; margin: auto; padding: 40px 0 90px 0; box-sizing: border-box;
+    background: lightgray;
+}
+
+.name {
+    width: 100%; height: 75px; font-size: 42px; font-family: 'NanumBarunGothicUL';
+    color: #333333; margin-top: -1px; letter-spacing: -0.5px;
+    border-bottom: 2px solid #323E51;
+}
+
+
+
+.print {
+    font-size: 15px; font-family: 'NanumBarunGothic';
+    float: right; margin-top: 17px;
+}
+
+.print .print-btn {
+    display: inline-block; padding-left: 15px; margin-left:14px;
+}
+
+.print .print-btn img {
+    display: inline-block; vertical-align: middle; margin-right: 6px;
+}
+
+.print .print-btn div {
+    display: inline-block; 
+}
+
+.print .print-btn:first-child {
+    letter-spacing: -0.6px;
+}
+
+.print .print-btn:first-child div {
+    margin-right: 1px;
+}
+
+.print .print-btn:first-child img {
+    margin-right: 5px;
+}
+
+.pnt-sec {
+    position: absolute; top: 208px; right: 303px; border-left: 1px solid #333333;
+    width: 2px; height: 13px;
+}
 
 
 
 
 
+.top-box {
+    width: 100%; height: 54px; background: lightblue; margin-top: 25px;
+}
+
+.tag-area {
+    padding-left: 30px; font-size: 12px; position: relative;
+}
+
+.tag-area .tag-top {
+    height: 22px; box-sizing: border-box;
+}
+
+.tag-area .tag-top div {
+    padding: 3px 8px 3px 8px; display: inline-block; letter-spacing: -0.5px;
+    margin-right: 6px;
+}
+
+.tag-area .tag-top div:first-child {
+    border: 1px solid #577cbf; color: #1f52ae;
+}
+
+.tag-area .tag-top div:last-child {
+    border: 1px solid #d60024;; color: #d60024;
+}
+
+.tag-area .tag-btm {
+    height: 22px; box-sizing: border-box;
+}
+
+.tag-area .tag-btm div {
+    padding: 3px 8px 3px 8px; display: inline-block; letter-spacing: -0.5px;
+    border: 1px solid #f54900;; color: #f54900; margin: 10px 3px 10px 0;
+}
+
+.tag-area img {
+    position: absolute; top: 14px; right: 26px;
+}
 
 
 
@@ -355,11 +445,11 @@ ul.nav-login li:last-child {
 .foot-wrap div .share a {
     width: 120px; text-align: center; margin-left: 10px; padding-top:7px;
     border: 1px solid #1a345e;; color: #1a345e; box-sizing: border-box;
-    background: #FFFFFF; font-family: 'NanumBarunGothicB'; letter-spacing: -0.4px;
+    background: #FFFFFF; font-family: "NanumBarunGothicB"; letter-spacing: -0.4px;
 }
 
 .foot-wrap div .share img {
-    margin-left: auto;
+    margin-left: auto; cursor: pointer;
 }
 
 
@@ -383,3 +473,10 @@ ul.nav-login li:last-child {
     src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot');
     src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.ttf') format('truetype')
 }
+
+@font-face {
+    font-family: "NanumBarunGothicUL";
+    src: url("/fonts/NanumBarunGothicUltraLight.woff2") format("woff2");
+    font-weight: 100;
+    font-style: normal;
+  }
