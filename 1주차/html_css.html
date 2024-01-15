@@ -708,11 +708,26 @@
 
                 <div class="btm-box">
                     <div class="accordion">
-                        <div class="acd-top">
+                        <div class="acd-top" onclick="accordion()">
                             <span>NOTICE</span>
-                            <img src="/img/PC/notice_on.gif" alt="arrow">
+                            <img src="/img/PC/notice_on.gif" alt="arrow" class="notice-on">
                         </div>
-                        <div class="acd-btm"></div>
+                        <div class="acd-btm">
+                            <ul>
+                                <li>
+                                    본 자료는 펀드평가회사 및 자산운용회사의 신뢰할만한 자료를 기초로 하여 작성된 것이나, 그 정확성이나 완전성을 당사가 보증하는 것은 아닙니다. 따라서 본 자료에 의존해 이루어진 투자 결과에 대해 당사는 법적 책임을 지지 않으므로 단순 참고 자료로만 이용해주시기 바랍니다.
+                                </li>
+                                <li>
+                                    펀드를 취득하시기 전에 투자대상, 환매방법 및 보수 등에 관하여 집합투자규약 및 (간이)투자설명서를 반드시 읽어보시기 바랍니다.
+                                    <ul>
+                                        <li>펀드는 예금자보호법에 따라 예금보험공사가 보호하지 않습니다.</li>
+                                        <li>펀드는 운용결과에 따라 투자원금의 손실이 발생할 수 있고, 그 손실은 투자자에게 귀속됩니다.</li>
+                                        <li>과거의 운용실적이 미래의 수익을 보장하는 것은 아닙니다.</li>
+                                        <li>해외펀드의 경우 환율변동에 따라 외화자산의 투자가치가 변동될 수 있습니다.</li>
+                                    </ul>
+                                </li>
+                            </ul>
+                        </div>
                     </div>
                 </div>
 
@@ -754,4 +769,10 @@
         </div>
     </div>
 </body>
+<script>
+    function accordion() {
+        var acdBtm = document.querySelector('.acd-btm');
+      acdBtm.style.display = (acdBtm.style.display === 'none' || acdBtm.style.display === '') ? 'block' : 'none';
+    }
+</script>
 </html>
