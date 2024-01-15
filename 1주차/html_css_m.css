@@ -5,8 +5,9 @@ a { text-decoration: none; color: inherit;}
 
 /* nav */
 .nav-box { 
-    height: 149px; width: 100%; background-color: #FFFFFF; box-sizing: border-box;
+    height: 149px; width: 95%; background-color: #FFFFFF; box-sizing: border-box;
     border-top: 5px solid #E10029; border-bottom: 1px solid #f56a2f; position: fixed; top: 0; left: 0; z-index: 999;
+    margin: 0 auto;
 }
 
 .nav-main {
@@ -125,7 +126,7 @@ ul.nav-login li:last-child {
 }
 
 .products a{
-    width: 180px; display: flex; color:#333333;
+    width: 180px; display: flex;
 }
 
 .sub-list ul li a span {
@@ -180,7 +181,7 @@ ul.nav-login li:last-child {
 }
 
 .funds a {
-    width: 230px; color:#333333;
+    width: 230px;
 }
 
 .funds a img {
@@ -228,7 +229,7 @@ ul.nav-login li:last-child {
 
 .search-menu a{
     width: 230px; background: #FBFCFC; border-right: 1px solid #C3C5C9;
-    color:#333333; font-family: 'NanumBarunGothicB';
+    color:#525252; font-family: 'NanumBarunGothicB';
 }
 
 .search-menu a img {
@@ -296,7 +297,7 @@ ul.nav-login li:last-child {
 
 .print {
     font-size: 15px; font-family: 'NanumBarunGothic';
-    float: right; margin-top: 17px; position: relative;
+    float: right; margin-top: 17px;
 }
 
 .print .print-btn {
@@ -324,7 +325,7 @@ ul.nav-login li:last-child {
 }
 
 .pnt-sec {
-    position: absolute; top: 3px; right: 118px; border-left: 1px solid #333333;
+    position: absolute; top: 208px; right: 301.5px; border-left: 1px solid #333333;
     width: 2px; height: 13px;
 }
 
@@ -345,8 +346,8 @@ ul.nav-login li:last-child {
 }
 
 .tag-area .tag-top div {
-    padding: 3px 8px 3px 8px; display: inline-block; letter-spacing: -0.038em;
-    margin-right: 0.4em;
+    padding: 3px 8px 3px 8px; display: inline-block; letter-spacing: -0.5px;
+    margin-right: 6px;
 }
 
 .tag-area .tag-top div:first-child {
@@ -489,7 +490,7 @@ ul.nav-login li:last-child {
 }
 
 .sum-type2 li:last-child .icon-2 img{
-    margin: 3px 5px 0 0;
+    margin: 3px 4px 0 0;
 }
 
 
@@ -500,34 +501,34 @@ ul.nav-login li:last-child {
     padding: 12px 30px; font-size: 15px; background: #fbfcfc;
     border-top: 1px solid #d4d6d9; border-bottom: 1px solid #a7acb4;
     height: 50px; box-sizing: border-box; display: inline-block; vertical-align: bottom;
-    width: 100%;  line-height: 0.7;  color: #333333;
+    width: 100%;  line-height: 0.7; 
 }
 
 .file-down span:first-child {
     padding-right: 29px; font-size: 15px; letter-spacing: -0.03em;
     border-right: 1px solid #d4d6d9; height: 14px;
-    display: inline-block; margin-bottom: 1px; color: #666666;
+    display: inline-block; margin-bottom: 1px;
 }
 
 .file-down a span{
     font-size: 13px; letter-spacing: -0.4px;
 }
 
-.file-down a:nth-child(3) {
-    margin-right: 1px;
-}
-
 .file-down a img {
     height: 24px; display: inline-block; vertical-align: bottom;
-    padding-right: 6px;
+    padding-right: 5px;
 }
 
-.file-down a:last-child span, .file-down a:nth-child(4) span {
-    letter-spacing: -0.034em;
+.file-down a:last-child img, .file-down a:nth-last-child(2) img, .file-down a:nth-last-child(3) img {
+    padding-right: 6px;
 }
 
 .file-down a {
     margin-left: 19px; 
+}
+
+.file-down a:nth-child(2) {
+    margin-left: 20px; 
 }
 
 .file-down a:hover {
@@ -538,30 +539,25 @@ ul.nav-login li:last-child {
 
 
 .btn-area {
-    margin-top: 30px; text-align: center; color: #273346; display: flex;
-    justify-content: center;
+    margin-top: 30px; text-align: center;
 }
 
-.btn-area a {
-    width: 140px; height: 46px; border: 1px solid #000000;
-    font-size: 18px; margin: 0; box-sizing: border-box; padding-top: 12px;
-    letter-spacing: -0.04em; border-radius: 2px;
+.btn-area a span {
+    display: inline-block; width: 140px; height: 46px; border: 1px solid #000000;
+    font-size: 18px; margin: 0 3px; box-sizing: border-box; padding-top: 12px;
+    letter-spacing: -0.05em; border-radius: 2px;
 }
 
-.btn-area a:first-child {
-    background: #e10029; border: 1px solid #e10029; color:#FFFFFF;  
-    box-sizing: border-box; letter-spacing: -0.05em;
+.btn-area a:first-child span {
+    background: #e10029; border: 1px solid #e10029; color:#FFFFFF;
+    
 }
 
-.btn-area a:nth-child(2) {
-    margin: 0 10px;
-}
-
-.btn-area a:hover {
+.btn-area a:hover span {
     border: 1px solid #f54900;
 }
 
-.btn-area a:first-child:hover {
+.btn-area a:first-child:hover span{
     background: #f54900; 
 }
 
@@ -579,7 +575,6 @@ ul.nav-login li:last-child {
     cursor: pointer; height: 50px; font-size: 17px; padding-top: 14px; box-sizing: border-box;
     letter-spacing: -0.04em; border-right: 1px solid #c3c3c3;  background: #FBFCFC;
     border-bottom: 2px solid #323e51;  border-top: 1px solid #c3c3c3;
-    color: #666666;
 }
 
 .tab-box .tab-item:nth-child(2) {
@@ -623,17 +618,17 @@ input[name="tab-item"] {
 .tab-table {
     width: 100%; border-collapse: collapse;
     border-top: 2px solid #323e51; margin-bottom: 55px; line-height: 26px;
-    letter-spacing: -0.03em; font-size: 15px; 
+    letter-spacing: -0.03em; font-size: 15px;
 }
 
 .tab-table tr th {
-    width: 159px; font-weight: normal; font-family: 'NanumBarunGothicB';
+    width: 158px; font-weight: normal; font-family: 'NanumBarunGothicB';
     text-align: left; padding: 9px 20px; border-right: 1px solid #e1e3e6;
     box-sizing: border-box; color: #1a345e; background: #f7f9fa;
 }
 
 .tab-table tr td {
-    padding: 9px 20px; font-family: 'NanumBarunGothic'; color: #333333;
+    padding: 9px 21px; font-family: 'NanumBarunGothic'; color: #525252;
 }
 
 th, td {
@@ -725,35 +720,33 @@ tr:last-child td div {
 
 .tab5-body {
     .date-box {
-        width: 100%; display: flex; align-items: center; color: #1a345e;
+        width: 100%; display: flex; align-items: center; color: #272727;
         height: 92px; box-sizing: border-box;
         border-top: 1px solid #596372; border-bottom: 1px solid #b1b1b1;
         .date-name {
-            font-size: 15px; letter-spacing: -0.028em; font-family: 'NanumBarunGothicB';
-            width: 160px; height: 100%; text-align: center; padding-top: 36px;
+            font-size: 15px; letter-spacing: -0.03em; font-family: 'NanumBarunGothicB';
+            width: 159px; height: 100%; text-align: center; padding-top: 36px;
             background: #f7f9fa; box-sizing: border-box;
             border-right: 1px solid #e1e3e6;
         }
         .date-select {
             width: 802px; box-sizing: border-box;
             .period-btn {
-                width: 100%; margin-left: 20px; display: flex;
+                width: 100%; margin-left: 20px;
                 div {
-                    font-size: 12px; letter-spacing: -0.035em;
+                    display: inline-block; font-size: 12px; letter-spacing: -0.03em;
                     height: 24px; border: 1px solid #464747; box-sizing: border-box;
-                    text-align: center; width: 48.5px; margin-right: 10px;
-                    border-radius: 2px; padding-top: 4px;
+                    text-align: center; margin-right: 6px; padding-top: 4px;
+                    border-radius: 2px; width: 48.7px;
                     &:first-child {
-                        width: 42.22px; box-sizing: border-box;
-                    }
-                    &:nth-child(2) {
-                        width: 48px; box-sizing: border-box;
-                    }
-                    &:nth-child(3) {
-                        width: 49px; box-sizing: border-box;
-                    }
+                        width: 42px; box-sizing: border-box;
+                        margin-right: 7px;
+                    } 
                     &:last-child {
-                        width: 54.5px; box-sizing: border-box;
+                        width: 56.1px;
+                    }
+                    &:nth-child(4) {
+                        margin-right: 7px;
                     }
                 }                
             }
@@ -766,8 +759,7 @@ tr:last-child td div {
                     box-sizing: border-box; margin-right: 8px;
                 }
                 .period-txt {
-                    padding: 0 10px; margin-bottom: 3px; letter-spacing: -0.0.3em;
-                    font-size: 14px;
+                    padding: 0 10px; margin-bottom: 3px;
                 }
                 img {
                     height: 29px; margin-bottom: 2px;
@@ -821,7 +813,7 @@ tr:last-child td div {
 
 
 .btm-box {
-    width: 100%; box-sizing: border-box; color: #333333;
+    width: 100%; box-sizing: border-box;
     border-top: 1px solid #323e51; margin-top: 35px;
     .accordion {
         .acd-top {
@@ -834,17 +826,14 @@ tr:last-child td div {
                     color: #f94c00;
                 }
             }
-            .notice-on {    
+            img {    
                 width: 14px; height: 8px; padding-right:20px; margin-top: 1px;
-            }
-            .notice-off {
-                width: 14px; height: 8px; padding-right:20px; margin-top: 1px; display: none;
             }
         }
         .acd-btm {
             width: 100%; height: 222px; border: 1px solid #d1d1d1; box-sizing: border-box;
             border-top: none; padding: 24px 20px 26px 20px; letter-spacing: -0.028em;
-            display: block; 
+            display: none;
             ul {
                 padding: 0; margin: 0; list-style-type: "▪"; list-style-position: outside;
                 box-sizing: border-box; font-size: 15px; padding-left: 7px;
@@ -856,7 +845,6 @@ tr:last-child td div {
                 }
                 ul {
                     list-style-type: "-"; list-style-position: outside; font-size: 14px; margin-top: 6px; padding-top: 2px;
-                    color: #666666;
                     li {
                        line-height: 23px;
                         &:last-child {
@@ -881,6 +869,7 @@ tr:last-child td div {
     width: 100%; height: 54px; box-sizing: border-box; border-top: 1px solid #E42F51;
     border-bottom: 1px solid #E2E2E3;
 }
+
 .foot-menu ul {
     width: 960px; height: 16.5px; padding: 16px 0 0 0; margin: auto; letter-spacing: -0.41px;
 }

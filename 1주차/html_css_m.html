@@ -2,9 +2,9 @@
 <html lang="ko">
 <head>
     <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
     <title>Document</title>
-    <link rel="stylesheet" type="text/css" href="/1주차/html_css.css">
+    <link rel="stylesheet" type="text/css" href="/1주차/html_css_m.css">
 </head>
 <body>
     <div>
@@ -711,7 +711,6 @@
                         <div class="acd-top" onclick="accordion()">
                             <span>NOTICE</span>
                             <img src="/img/PC/notice_on.gif" alt="arrow" class="notice-on">
-                            <img src="/img/PC/notice_off.gif" alt="arrow" class="notice-off">
                         </div>
                         <div class="acd-btm">
                             <ul>
@@ -773,11 +772,7 @@
 <script>
     function accordion() {
         var acdBtm = document.querySelector('.acd-btm');
-        var arrowOn = document.querySelector('.notice-on');
-        var arriwOff = document.querySelector('.notice-off');
       acdBtm.style.display = (acdBtm.style.display === 'none' || acdBtm.style.display === '') ? 'block' : 'none';
-      arrowOn.style.display = (acdBtm.style.display === 'block' || acdBtm.style.display === '') ? 'block' : 'none';
-      arriwOff.style.display = (acdBtm.style.display === 'none' || acdBtm.style.display === '') ? 'block' : 'none';
     }
 </script>
 </html>
