@@ -8,24 +8,22 @@
 </head>
 <body class="mobile">
     <div class="mobile-content">
+        <!-- navbar -->
         <div class="nav-box">
-            <div class="cover"></div>
+            <div class="background"></div>
             <div class="nav-btn">
                 <a href="#" class="hambuger">
                     <img src="/img/Mobile/btn_menu.gif" alt="btn_menu">
                 </a>
-
                 <a href="#" class="tab-menu" onclick="tabMenuClick()">
                     <span>펀드검색</span>
                     <img src="/img/Mobile/nav_arrow.gif" alt="nav_arrow_off" class="arrow-off">
                     <img src="/img/Mobile/nav_arrow_off.gif" alt="nav_arrow_on" class="arrow-on">
                 </a>
-
                 <a href="#" class="nav-search">
                     <img src="/img/Mobile/btn_search.gif" alt="btn_search">
                 </a>
             </div>
-
             <div class="tab-menu-con">
                 <ul>
                     <li>펀드검색</li>
@@ -38,35 +36,123 @@
                     <li>펀드의이해</li>
                 </ul>
             </div>
-            
         </div>
-
-
-
-
+        <!-- container -->
         <div class="container">
-            aa
+            <div class="content">
+                <!-- tag & fund name -->
+                <div class="tag-box">
+                    <div class="tag-item">
+                        <span>증권-주식형</span>
+                        <span>높은위험</span>
+                    </div>
+                    <div class="tag-item">
+                        <span>수수료미징구</span>
+                        <span>온라인</span>
+                    </div>
+                    <img src="/img/Mobile/m_ico_favorite_off.gif" alt="starOff">
+                </div>
+                <div class="fund-name">
+                    교보위대한중소형밸류(자)1호[주식]Ce
+                </div>
+                <!-- fund info -->
+                <div class="fund-info">
+                    <ul class="fund-info-list">
+                        <li class="info-list-top">
+                            <span>투자유형</span>
+                            <span>증권주식형</span>
+                        </li>
+                        <li class="info-list-top2">
+                            <span>투자위험도</span>
+                            <span>높은위험</span>
+                        </li>
+                        <li class="list-type1">
+                            <span class="title">6개월 수익률</span>
+                            <span class="txt">-10.74%</span>
+                        </li>
+                        <li class="list-type2">
+                            <span class="title">기준가</span>
+                            <span class="txt">1,236.35</span>
+                            <span class="rate">2.60</span>
+                        </li>
+                        <li class="list-type2">
+                            <span class="title">펀드규모</span>
+                            <span class="txt">104억원</span>
+                        </li>
+                        <li class="list-type2">
+                            <span class="title">집합투자업자</span>
+                            <span class="txt">교보악사자산운용</span>
+                        </li>
+                        <li class="list-type2">
+                            <span class="title">선취수수료</span>
+                            <span class="txt">없음</span>
+                        </li>
+                        <li class="list-type2">
+                            <span class="title">설정일</span>
+                            <span class="txt">2008.03.10</span>
+                        </li>
+                        <li class="list-type2">
+                            <span class="title">환매수수료</span>
+                            <span class="txt">없음</span>
+                        </li>
+                        <li class="list-type2">
+                            <span class="title">제로인 평가등급<br>(3년/1년)</span>
+                            <span class="txt">-10.74%</span>
+                        </li>
+                    </ul>
+                </div>
+            </div>
         </div>
 
 
 
-
+        <!-- footer -->
         <div id="footer" class="footer">
-            aa
+            <div class="foot-top">
+                <div class="foot-top-info">
+                    <span>스마트금융센터</span>
+                    <span>
+                        <a href="#none" class="phone-num">1599-8245<img src="/img/Common/ico_dot.gif" alt="dot"></a>
+                        <a href="#none" class="phone-num">1588-8245</a>
+                        <br>
+                        <a href="#none" class="kakaochat"><img src="/img/Mobile/kakaochat.png" alt="">카카오챗봇(FAQ)</a>
+                    </span>
+                </div>
+            </div>
+            <div class="foot-btm">
+                <div class="foot-btm-menu">
+                    <ul>
+                        <li><a href="#">영업점안내</a></li>
+                        <li><a href="#">개인정보처리방침</a></li>
+                        <li><a href="#">정보교류차단</a></li>
+                        <li><a href="#">약관/설명서</a></li>
+                    </ul>
+                    <ul>
+                        <li><a href="#">투자권유준칙</a></li>
+                        <li><a href="#">보호금융상품등록부</a></li>
+                        <li><a href="#">소비자보호광장</a></li>
+                    </ul>
+                </div>
+                <p class="foot-copyright">
+                    Copyright SK Securities.Co.,LTD.All rights reserved.
+                </p>
+            </div>
         </div>
     </div>
 </body>
 <script>
     function tabMenuClick() {
+        // onclick 삭제, id로 사용, 단순화
         var tabMenuContent = document.querySelector('.tab-menu-con');
         var arrowOn = document.querySelector('.arrow-on');
         var arriwOff = document.querySelector('.arrow-off');
         var shadow = document.querySelector('.cover');
-      tabMenuContent.style.display = (tabMenuContent.style.display === 'none' || tabMenuContent.style.display === '') ? 'block' : 'none';
-      arrowOn.style.display = (tabMenuContent.style.display === 'block' || tabMenuContent.style.display === '') ? 'block' : 'none';
-      arriwOff.style.display = (tabMenuContent.style.display === 'none' || tabMenuContent.style.display === '') ? 'block' : 'none';
-      shadow.style.display = (tabMenuContent.style.display === 'block' || tabMenuContent.style.display === '') ? 'block' : 'none';
-
-    }
+        var scroll = document.querySelector('.mobile');
+        tabMenuContent.style.display = (tabMenuContent.style.display === 'none' || tabMenuContent.style.display === '') ? 'block' : 'none';
+        arrowOn.style.display = (tabMenuContent.style.display === 'block' || tabMenuContent.style.display === '') ? 'inline-block' : 'none';
+        arriwOff.style.display = (tabMenuContent.style.display === 'none' || tabMenuContent.style.display === '') ? '' : 'none';
+        shadow.style.display = (tabMenuContent.style.display === 'block' || tabMenuContent.style.display === '') ? 'block' : 'none';
+        scroll.style.overflow = (tabMenuContent.style.display === 'block' || tabMenuContent.style.display === '') ? 'hidden' : '';
+       }
 </script>
 </html>
