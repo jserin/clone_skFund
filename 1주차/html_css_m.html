@@ -8,14 +8,14 @@
 </head>
 <body class="mobile">
     <div class="mobile-content">
-        <!-- navbar -->
+        <!-- 메뉴바 -->
         <div class="nav-box">
             <div class="background"></div>
             <div class="nav-btn">
                 <a href="#" class="hambuger">
                     <img src="/img/Mobile/btn_menu.gif" alt="btn_menu">
                 </a>
-                <a href="#" class="tab-menu" onclick="tabMenuClick()">
+                <a href="#none" class="tab-menu" onclick="tabMenuClick()">
                     <span>펀드검색</span>
                     <img src="/img/Mobile/nav_arrow.gif" alt="nav_arrow_off" class="arrow-off">
                     <img src="/img/Mobile/nav_arrow_off.gif" alt="nav_arrow_on" class="arrow-on">
@@ -37,10 +37,10 @@
                 </ul>
             </div>
         </div>
-        <!-- container -->
+        <!-- 본문 -->
         <div class="container">
-            <div class="content">
-                <!-- tag & fund name -->
+            <div class="top-content">
+                <!-- 태그박스&펀드이름 -->
                 <div class="tag-box">
                     <div class="tag-item">
                         <span>증권-주식형</span>
@@ -55,7 +55,7 @@
                 <div class="fund-name">
                     교보위대한중소형밸류(자)1호[주식]Ce
                 </div>
-                <!-- fund info -->
+                <!-- 펀드요약테이블 -->
                 <div class="fund-info">
                     <ul class="fund-info-list">
                         <li class="info-list-top">
@@ -97,15 +97,102 @@
                         </li>
                         <li class="list-type2">
                             <span class="title">제로인 평가등급<br>(3년/1년)</span>
-                            <span class="txt">-10.74%</span>
+                            <span class="txt">
+                                <span class="grade type1">aa</span>
+                                <span class="grade type2">bb</span>
+                                <span class="grade type2">bb</span>
+                            </span>
                         </li>
                     </ul>
+                    <div class="fund-file">
+                        <div class="title">상품정보</div>
+                        <a href="#" class="download-btn">집합투자규약</a>
+                        <a href="#" class="download-btn">투자설명서</a>
+                        <a href="#" class="download-btn">간이투자설명서</a>
+                        <a href="#" class="download-btn">핵심설명서</a>
+                    </div>
+                </div>
+                <!-- 매수&버튼들 -->
+                <div class="btn-area">
+                    <a href="#"><span>신규매수</span></a>
+                    <a href="#"><span>장바구니</span></a>
+                    <a href="#"><span>목록</span></a>
+                </div>
+            </div>
+            <!-- 탭메뉴 -->
+            <div class="bottom-content">
+                <!-- 탭메뉴슬라이드 -->
+                <div class="tab-area">
+                    <ul id="tabSlide" class="tabs">
+                        <li class="tab-btn selected" data-tab="tab-1">펀드개요</li>
+                        <li class="tab-btn" data-tab="tab-2">수익률차트</li>
+                        <li class="tab-btn" data-tab="tab-3">수익위험분석</li>
+                        <li class="tab-btn" data-tab="tab-4">보유내역분석</li>
+                        <li class="tab-btn" data-tab="tab-5">일별기준가</li>
+                    </ul>
+                    <span class="tab-arrow left" id="arrowLeft">l</span>
+                    <span class="tab-arrow right" id="arrowRight">r</span>
+                </div>
+                <!-- 탭내용 -->
+                <div class="tab-content">
+                    <div class="tab-body tab1 selected" id="tab-1">
+                        <div class="title">주요내용</div>
+                        <table class="tab-table type1">
+                            <tr>
+                                <th>펀드형태</th>
+                                <td>주식형</td>
+                            </tr>
+                            <tr>
+                                <th>최초설정일</th>
+                                <td>2008년 03월 10일</td>
+                            </tr>
+                            <tr>
+                                <th>투자대상</th>
+                                <td>주식편입비율 : 60%이상, 채권편입비율 : 40%이하, 현금편입비율 : 40%이하</td>
+                            </tr>
+                            <tr>
+                                <th>저축방법</th>
+                                <td>임의식 + 적립식</td>
+                            </tr>
+                            <tr>
+                                <th>환매수수료</th>
+                                <td>없음</td>
+                            </tr>
+                            <tr>
+                                <th>선취판매수수료</th>
+                                <td>없음</td>
+                            </tr>
+                            <tr>
+                                <th>후취판매수수료</th>
+                                <td>없음</td>
+                            </tr>
+                            <tr>
+                                <th>펀드보수</th>
+                                <td>총 연 1.00000%(판매:0.20000%, 운용:0.75000%, 기타:0.05000%)</td>
+                            </tr>
+                            <tr>
+                                <th>매수기준</th>
+                                <td>15시30분 이전:제2영업일 기준가로 제2영업일 매수
+                                    <br>
+                                    15시30분 경과후:제3영업일 기준가로 제3영업일 매수
+                                </td>
+                            </tr>
+                            <tr>
+                                <th>환매기준</th>
+                                <td>15시30분 이전:제2영업일 기준가로 제4영업일 지급
+                                    <br>
+                                    15시30분 경과후:제3영업일 기준가로 제4영업일 지급
+                                </td>
+                            </tr>
+                        </table>
+                    </div>
+                    <div class="tab-body tab2" id="tab-2">bbb</div>
+                    <div class="tab-body tab3" id="tab-3">ccc</div>
+                    <div class="tab-body tab4" id="tab-4">ddd</div>
+                    <div class="tab-body tab5" id="tab-5">eee</div>
                 </div>
             </div>
         </div>
-
-
-
         <!-- footer -->
         <div id="footer" class="footer">
             <div class="foot-top">
@@ -139,20 +226,52 @@
             </div>
         </div>
     </div>
+    <script>
+        function tabMenuClick() {
+            // onclick 삭제, id로 사용, 단순화
+            var tabMenuContent = document.querySelector('.tab-menu-con');
+            var arrowOn = document.querySelector('.arrow-on');
+            var arriwOff = document.querySelector('.arrow-off');
+            tabMenuContent.style.display = (tabMenuContent.style.display === 'none' || tabMenuContent.style.display === '') ? 'block' : 'none';
+            arrowOn.style.display = (tabMenuContent.style.display === 'block' || tabMenuContent.style.display === '') ? 'inline-block' : 'none';
+            arriwOff.style.display = (tabMenuContent.style.display === 'none' || tabMenuContent.style.display === '') ? '' : 'none';
+        }
+        document.addEventListener('DOMContentLoaded', function() {
+            // 탭 슬라이드 할때 화살표 표시
+            var tabSlide = document.getElementById('tabSlide');
+            var arrowLeft = document.getElementById('arrowLeft');
+            var arrowRight = document.getElementById('arrowRight');
+            tabSlide.addEventListener('scroll', function() {
+                console.log('slide');
+                if (tabSlide.scrollLeft != 0) {
+                    arrowLeft.classList.add('visible');
+                } else {
+                    arrowLeft.classList.remove('visible');
+                }
+                if (tabSlide.scrollLeft != tabSlide.scrollWidth - tabSlide.clientWidth) {
+                    arrowRight.classList.remove('visible2');
+                } else {
+                    arrowRight.classList.add('visible2');
+                }
+            });
+            // 탭 전환
+            var tabLinks = document.querySelectorAll('#tabSlide li');
+            tabLinks.forEach(function(link) {
+                link.addEventListener('click', function() {
+                    var tabId = this.getAttribute('data-tab');
+                    tabLinks.forEach(function(tabLink) {
+                        tabLink.classList.remove('selected');
+                    });
+                    var tabBody = document.querySelectorAll('.tab-body');
+                    tabBody.forEach(function(tabContent) {
+                        tabContent.classList.remove('selected');
+                    });
+
+                    this.classList.add('selected');
+                    document.getElementById(tabId).classList.add('selected');
+                });
+            });
+        });    
+    </script>
 </body>
-<script>
-    function tabMenuClick() {
-        // onclick 삭제, id로 사용, 단순화
-        var tabMenuContent = document.querySelector('.tab-menu-con');
-        var arrowOn = document.querySelector('.arrow-on');
-        var arriwOff = document.querySelector('.arrow-off');
-        var shadow = document.querySelector('.cover');
-        var scroll = document.querySelector('.mobile');
-        tabMenuContent.style.display = (tabMenuContent.style.display === 'none' || tabMenuContent.style.display === '') ? 'block' : 'none';
-        arrowOn.style.display = (tabMenuContent.style.display === 'block' || tabMenuContent.style.display === '') ? 'inline-block' : 'none';
-        arriwOff.style.display = (tabMenuContent.style.display === 'none' || tabMenuContent.style.display === '') ? '' : 'none';
-        shadow.style.display = (tabMenuContent.style.display === 'block' || tabMenuContent.style.display === '') ? 'block' : 'none';
-        scroll.style.overflow = (tabMenuContent.style.display === 'block' || tabMenuContent.style.display === '') ? 'hidden' : '';
-       }
-</script>
 </html>

@@ -1,12 +1,12 @@
 body {padding: 0; margin: 0; text-decoration: none; font-family: 'NanumBarunGothic'; color: #000000;
-    word-break: keep-all; word-wrap: break-word;}
+    word-break: keep-all; word-wrap: break-word; &::-webkit-scrollbar{display:none;}}
 ul { list-style: none; }
 li {word-break: keep-all; word-wrap: break-word;}
 a { text-decoration: none; color: inherit;}
 
 .mobile-content {
     width: 100%; overflow: hidden;
-    /* navbar */
+    /* 메뉴바 */
     .nav-box { 
         width: 100%; height: 52px; position: fixed; top: 0; z-index: 999;
         .nav-btn {
@@ -56,20 +56,20 @@ a { text-decoration: none; color: inherit;}
             display: none;
         }
     }
-    /* content */
+    /* 본문 */
     .container {
         position: relative; min-height: 500px; padding-top: 50px; z-index: 1;
         letter-spacing: -0.03em; line-height: 1.1;
-        .content {
-            padding: 30px 18px 45px 18px;
-            /* tag & fund name */
+        .top-content {
+            padding: 30px 18px 0 18px;
+            /* 태그박스&펀드이름 */
             .tag-box {
                 margin-bottom: 10px; position: relative;
                 .tag-item {
                     font-size: 11px; height: 15px; line-height: 15px; margin-bottom: 16px;
                     padding-right: 15px;
                     span {
-                        height: 15px;  line-height: 15px; padding: 2px 5px 0;
+                        height: 15px; line-height: 15px; padding: 2px 5px 0;
                         display: inline-block;
                     }
                     &:first-child {
@@ -102,12 +102,12 @@ a { text-decoration: none; color: inherit;}
                 font-family: 'NanumBarunGothicB'; font-size: 19px; line-height: 1.3;
                 margin-bottom: 10px; width: 83%; letter-spacing: -0.022em;
             }
-            /* fund info */
+            /* 펀드요약테이블 */
             .fund-info {
                 position: relative; border-top: 1px solid #323e51; border-bottom: 1px solid #c8cacc;
                 border-left: 1px solid #c8cacc; border-right: 1px solid #c8cacc;
                 .fund-info-list {
-                    margin: 0; padding: 0;
+                    margin: 0; padding: 0 0 20px 0;
                     .info-list-top {
                         width: 50%; padding: 20px 0 60px; text-align: center; height: 56px;
                         border-right: 1px solid #e5e5e5; border-bottom: 1px solid #e5e5e5;
@@ -117,6 +117,7 @@ a { text-decoration: none; color: inherit;}
                             display: inline-block; width: 100%; line-height: 1.4;
                             &:first-child {
                                 font-size: 14px; color: #1a345e; margin-bottom: 15px; 
+                                width: 30%;
                             }
                             &:last-child {
                                 font-size: 16px;
@@ -143,6 +144,9 @@ a { text-decoration: none; color: inherit;}
                         .title {
                             display: inline-block; width: 38%; color: #1a345e;
                         }
+                        .txt {
+                            display: inline-block;
+                        }
                         &:nth-child(3) {
                             .txt {
                                 color: #292e9d !important; font-family: 'NanumBarunGothicB';
@@ -159,9 +163,128 @@ a { text-decoration: none; color: inherit;}
                         margin-top: 20px;
                     }
                     .list-type2 {
-                        margin-top: 15px;
+                        margin-top: 15px; 
+                        &:last-child {
+                            min-height: 54px;
+                            .title {
+                                margin-bottom: 5px;
+                            }
+                            .txt {
+                                position: relative; display: inline-block; vertical-align: top;
+                                .grade {
+                                    color: transparent; font-size: 14px;
+                                    &.type1 {
+                                        background: url(/img/Mobile/m_ico_level_on.gif) no-repeat ;
+                                        position: absolute; top: 0;
+                                    }
+                                    &.type2 {
+                                        background: url(/img/Mobile/m_ico_level_off.gif) no-repeat ;
+                                        position: absolute; top: 25px;
+                                        display: inline-block;
+                                        &:last-child {
+                                            left: 17px;
+                                        }
+                                    }
+                                }
+                            }
+                        }
                     }
                 }
+                .fund-file {
+                    padding: 20px 13px 25px; border-top: 1px solid #c8cacc;
+                    background: #fbfcfc;
+                    .title {
+                        margin-bottom: 15.5px;
+                    }
+                    .download-btn {
+                        font-size: 14px; color: #666666; margin-left: 3%; padding-left: 30px;
+                        background: url(/img/Mobile/m_ico_pdf.gif) 0 0 no-repeat; background-size: 20px 20px;
+                        line-height: 24px; display: inline-block;
+                    }
+                }
+            }
+            .btn-area {
+                letter-spacing: -0.05em; color: #323e51; margin-top: 30px; line-height: 47px;
+                display: table; table-layout: fixed; width: 100%; white-space: nowrap; 
+                text-align: center; margin-bottom: 40px;
+                a {
+                    border: 1px solid #6f7885; width: 32%; display: inline-block;
+                    margin-right: 2%; max-height: 48px; box-sizing: border-box;
+                    &:first-child {
+                        background: #f0143a; border: 1px solid #f0143a; color: #FFFFFF;
+                        border-radius: 2px;
+                    }
+                }
+            }
+        }
+        /* 탭메뉴 */
+        .bottom-content {
+            margin-top: -5px; margin-bottom: 25px;
+            /* 탭메뉴슬라이드 */
+            .tab-area {
+                border-top: 1px solid #d6d8dc; border-bottom: 1px solid #878a94;
+                width: 100%; background: #f9f9f9; position: relative; 
+                height: 47px; box-sizing: border-box; text-align: center; padding: 0 4px;
+                ul {
+                    margin: 0 auto; padding: 0; white-space: nowrap; color: #333333;
+                    scroll-snap-type: x; overflow-x: auto;
+                    .tab-btn {
+                        display: inline-block; height: 47px; line-height: 47px; letter-spacing: -0.127em;
+                        margin: 0 20px; box-sizing: border-box;
+                        &.selected {
+                            color: #e50025; border-bottom: 4px solid #e50025;
+                            height: 46px;
+                        }
+                    }
+                    &::-webkit-scrollbar {
+                        display: none;
+                    }
+                    
+                }
+                .tab-arrow {
+                    position: absolute; height: 47px; line-height: 47px; color: transparent;
+                    width: 18px; z-index: 800;
+                    &.left {
+                        top: 0; left: 0;
+                        background: url(/img/Mobile/btn_left.png) 9px 13px no-repeat ;
+                        background-size: 8px 19px;
+                        opacity: 0;
+                    }
+                    &.right {
+                        top: 0; right: 0; background: url(/img/Mobile/btn_right.png) 0 13px no-repeat;
+                        opacity: 1;
+                    }
+                    &.visible {
+                        opacity: 1; 
+                    }
+                    &.visible2 {
+                        opacity: 0; 
+                    }
+                }
+            }
+            /* 탭내용 */
+            .tab-content {
+                width: 100%; padding: 0 18px 0 18px; box-sizing: border-box;
+                .tab-body {
+                    display: none; padding-top: 30px;
+                    .title {
+                        font-size: 18px; line-height: 25px; margin-bottom: 10px;
+                        font-family: 'NanumBarunGothicB';
+                    }
+                    &.selected {
+                        display: block;
+                    }
+                    &.tab1 {
+                        .tab-table {
+                            font-size: 14px; border-collapse: collapse;
+                            th {
+                                font-weight: normal; color: #1a345e !important;
+                                background: #f7f9fa;
+                            }
+                        }
+                    }
+                }
+                
             }
         }
     }
@@ -171,6 +294,7 @@ a { text-decoration: none; color: inherit;}
         border-top: 1px solid #e0052d; border-bottom: 1px solid #b5b8be;
         .foot-top {
             padding: 15px 20px 15px; border-bottom: 1px solid #b5b8be;
+            border-radius: 2px;
             .foot-top-info {
                 font-size: 16px; color: #333333; line-height: 1.1; letter-spacing: -0.03em;
                 span {
