@@ -219,7 +219,7 @@ a { text-decoration: none; color: inherit;}
         }
         /* 탭메뉴 */
         .bottom-content {
-            margin-top: -5px; margin-bottom: 25px;
+            margin-top: -5px; padding-bottom: 20px;
             /* 탭메뉴슬라이드 */
             .tab-area {
                 border-top: 1px solid #d6d8dc; border-bottom: 1px solid #878a94;
@@ -232,7 +232,7 @@ a { text-decoration: none; color: inherit;}
                         display: inline-block; height: 47px; line-height: 47px; letter-spacing: -0.127em;
                         margin: 0 20px; box-sizing: border-box;
                         &.selected {
-                            color: #e50025; border-bottom: 4px solid #e50025;
+                            color: #e50025; border-bottom: 3px solid #e50025;
                             height: 46px;
                         }
                     }
@@ -243,7 +243,7 @@ a { text-decoration: none; color: inherit;}
                 }
                 .tab-arrow {
                     position: absolute; height: 47px; line-height: 47px; color: transparent;
-                    width: 18px; z-index: 800;
+                    width: 18px; z-index: 900;
                     &.left {
                         top: 0; left: 0;
                         background: url(/img/Mobile/btn_left.png) 9px 13px no-repeat ;
@@ -265,26 +265,231 @@ a { text-decoration: none; color: inherit;}
             /* 탭내용 */
             .tab-content {
                 width: 100%; padding: 0 18px 0 18px; box-sizing: border-box;
+                margin-bottom: 45px;
                 .tab-body {
                     display: none; padding-top: 30px;
                     .title {
                         font-size: 18px; line-height: 25px; margin-bottom: 10px;
                         font-family: 'NanumBarunGothicB';
+                        span {
+                            font-size: 12px; color: #666666; line-height: 22px;
+                            float: right; font-family: 'NanumBarunGothic'; margin-top: 3px;
+                            letter-spacing: -0.035em;
+                        }
                     }
                     &.selected {
                         display: block;
                     }
-                    &.tab1 {
-                        .tab-table {
-                            font-size: 14px; border-collapse: collapse;
+                    .tab-table {
+                        font-size: 14px; border-collapse: collapse; width: 100%;
+                        border-top: 2px solid #7f8ca2 ; letter-spacing: -0.04em;
+                        word-break: keep-all; word-wrap: break-word;  
+                        margin-bottom: 45px; border-spacing: 2px;
+                        tr {
+                            border-bottom: 1px solid #e1e3e6; display: table-row;
                             th {
-                                font-weight: normal; color: #1a345e !important;
-                                background: #f7f9fa;
+                                border-right: 1px solid #e1e3e6; color: #1a345e !important;
+                                font-weight: normal; background: #f7f9fa; 
+                                text-align: left; 
+                            }
+                            td {
+                                border-left: 1px solid #e1e3e6;
+                            }
+                            &:last-child {
+                                border-bottom: 1px solid #a7acb4;
+                            }
+                        }
+                        thead {
+                            th {
+                                border-bottom: 1px solid #e1e3e6; text-align: center;
+                                vertical-align: middle; font-weight: normal; 
+                                &:last-child {
+                                    border-right: none;
+                                }
+                            }
+                        }
+                        &.type1 {
+                            line-height: 22px; 
+                            tr {
+                                th {
+                                    width: 37.7%;
+                                    box-sizing: border-box; display: table-cell;
+                                    background: #f7f9fa; border-right: 1px solid #e1e3e6;
+                                    padding: 9px 3% !important; vertical-align: top;
+                                }
+                                td {
+                                    padding: 9px 3% !important;
+                                   &.break {
+                                        word-break: break-all;
+                                    }
+                                }
+                            }
+                        }
+                        &.type2 {
+                            line-height: 26px; display: table; table-layout: auto;
+                            min-width: 348px;
+                            tr {
+                                th {
+                                    padding: 10px 10px 9px 10px; display: table-cell;
+                                    &:first-child {
+                                    }
+                                    &:last-child {
+                                        background: #f7f9fa url(/img/Mobile/m_btn_list.gif) no-repeat top right;
+                                    }
+                                }
+                                td {
+                                    display: table-cell; padding: 10px 10px 9px 10px;
+                                    text-align: right;
+                                }
+                                &:nth-child(2n) {
+                                    td {
+                                        background: #fbfcfc;
+                                    }
+                                }
+                            }
+                        }
+                        &.type3 {
+                            line-height: 26px; display: table; table-layout: fixed; min-width: 336px;
+                            margin-bottom: 0;
+                            tr {
+                                th {
+                                    padding: 10px 10px 9px 10px;
+                                }
+                                td {
+                                    text-align: right; padding: 10px 10px 9px 10px; white-space: nowrap;
+                                }
+                                &:nth-child(2n) {
+                                    td {
+                                        background: #fbfcfc;
+                                    }
+                                }
+                            }
+                            thead {
+                                th {
+                                    &:nth-child(2), &:nth-child(3), &:nth-child(4) {
+                                        background: #f7f9fa url(/img/Mobile/m_btn_list.gif) no-repeat top right;
+                                    }
+                                }
+                            }
+                        }
+                        &.type4 {
+                            line-height: 26px; min-width: 292px;
+                            thead {
+                                th {
+                                    padding: 10px 10px 9px 10px; font-size: 1em;
+                                    &:nth-child(2), &:nth-child(3), &:nth-child(4) {
+                                        background: #f7f9fa url(/img/Mobile/m_btn_list.gif) no-repeat top right;
+                                    }
+                                }
+                            }
+                            td {
+                                padding: 10px 10px 9px 10px; text-align: right; white-space: nowrap;
+                                &:first-child {
+                                    border-left: none; text-align: center; min-width: 88.5px;
+                                    box-sizing: border-box;
+                                }
                             }
                         }
                     }
+                    .table-txt {
+                        margin-top: 10px; letter-spacing: -0.027em;
+                        ul {
+                            margin: 0; padding: 0; font-size: 14px; color: #666666;
+                            li {
+                                background: url(/img/Mobile/blt_notice_2.gif) no-repeat 0 9px;
+                                padding-left: 9px; line-height: 23px;
+                            }
+                            
+                        }
+                    }
+                    /* tab3일별기준가 조회박스*/
+                    .date-box {
+                        width: 100%; margin: 0 -18px 30px -18px; border: 18px solid #f5f6f7;
+                        .date-search {
+                            width: 100%; border: 1px solid #c8cacc !important;
+                            box-sizing: border-box; white-space: nowrap;
+                            .title {
+                                font-size: 14px; font-family: 'NanumBarunGothicB';
+                                padding: 16px 0 0 15px; line-height: 18px; margin-bottom: 0;
+                            }
+                            .date {
+                                padding: 0 15px; box-sizing: border-box;
+                                margin-top: 6px;
+                                a {
+                                    font-size: 14px; border: 1px solid #6f7885; width: 23.5%;
+                                    text-align: center; display: inline-block; line-height: 37px;
+                                    margin-left: 2%; margin-right: -3.2px; color: #1a345e;
+                                    box-sizing: border-box; height: 37px;
+                                    &:first-child {
+                                        margin-left: 0;
+                                    }
+                                }
+                            }
+                            .period {
+                                padding: 0 15px 15px; margin-top: 6px; font-size: 14px;
+                                vertical-align: middle; white-space: nowrap;
+                                .period-1 {
+                                    width: 46.8%; display: inline-block; 
+                                    background: url(/img/Mobile/m_ico_schedule.gif) no-repeat 90% 46%;
+                                    span {
+                                        width: 69%; display: inline-block; padding: 0 2.654% 0 2.654%;
+                                        height: 43px; line-height: 43px; font-size: 16px;
+                                        letter-spacing: -0.05em; text-align: center;
+                                        box-sizing: border-box;
+                                    }
+                                }
+                                .period-2 {
+                                    display: inline-block; width: 4%; text-align: center;
+                                    line-height: 16px;
+                                }
+                            }
+                        }
+                        .date-btn {
+                            width: 100%; display: inline-block; height: 48px; line-height: 49px;
+                            text-align: center; background: #323e51; color: #FFFFFF;
+                        }
+                    }
+                    .selected-period {
+                        font-size: 12px; line-height: 1em; color: #666666; margin-bottom: 12px;
+                        letter-spacing: -0.035em;
+                        span {
+                            margin-left: 4px;
+                        }
+                    }
                 }
-                
+            }
+        }
+        /* notice */
+        .notice-area {
+            width: 100%; font-size: 13px; line-height: 18px;
+            box-sizing: border-box;
+            .notice-top {
+                padding: 0 18px; border-top: 1px solid #323e51; font-size: 16px; line-height: 43px;
+                font-family: 'NanumBarunGothicB'; height: 100%; height: 41px;
+                border-bottom: 1px solid #cccfd3;
+                &::first-letter {
+                    color: #f94c00;
+                }
+            }
+            .notice-btm {
+                padding: 18px 16px;
+                ul {
+                    margin: 0; padding: 0; line-height: 18px; letter-spacing: -0.03em;
+                    li {
+                        padding-left: 9px; word-break: keep-all; word-wrap: break-word;
+                        background: url(/img/Mobile/blt_notice.gif) no-repeat 0 9px;
+                        ul {
+                            margin-top: 7px;
+                            li {
+                                background: url(/img/Mobile/blt_notice_2.gif) no-repeat 0 9px;
+                                color: #666666; line-height: 19px;
+                            }
+                        }
+                    }
+                    .list-margin {
+                        margin-top: 15px;
+                    }
+                }
             }
         }
     }
