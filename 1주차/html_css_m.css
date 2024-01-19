@@ -16,15 +16,15 @@ a { text-decoration: none; color: inherit;}
                 position: absolute; left: 18px; top: 19px;
             }
             .tab-menu {
-                display: inline-block; padding: 17px 0 0 60px; 
+                display: inline-block; margin: 17px 0 0 60px; 
                 span {
-                    color: #FFFFFF; font-size: 19px; letter-spacing: -0.03em;
+                    color: #FFFFFF; font-size: 19px; letter-spacing: -0.03em; position: relative; 
                 }
-                .arrow-off {
-                    margin-left: 15px; margin-bottom: 1px; 
+                img {
+                    position: absolute; top: 22px; left: 144px;
                 }
                 .arrow-on {
-                    margin-left: 15px; margin-bottom: 1px; display: none;
+                    display: none;
                 }
             }
             .nav-search {
@@ -35,8 +35,9 @@ a { text-decoration: none; color: inherit;}
             }
         }
         .tab-menu-con {
-            width: 100%; height: 390px; background: #FFFFFF; z-index: 990;
-            position: relative; display: none;
+            width: 100%; background: #FFFFFF; z-index: 990;
+            position: relative; height: 0; overflow: hidden;
+            transition: height 0.8s ease;
             ul {
                 margin: 0 auto; padding:0 42px; 
                 box-sizing: border-box;
@@ -52,7 +53,7 @@ a { text-decoration: none; color: inherit;}
         }
         .cover {
             width: 100%; background: #000; position: absolute;
-            height: 100vh; opacity: 0.4; z-index: 1;
+            height: 100vh; opacity: 0.4; z-index: -1;
             display: none;
         }
     }
@@ -88,8 +89,8 @@ a { text-decoration: none; color: inherit;}
                         span {
                             border: 1px solid #f54900; color: #f54900;
                             &:last-child {
-                                margin-left: 3px !important;
-                                width: 29px !important;
+                                margin-left: 3px;
+                                width: 29px;
                             }
                         }
                     }
@@ -149,7 +150,7 @@ a { text-decoration: none; color: inherit;}
                         }
                         &:nth-child(3) {
                             .txt {
-                                color: #292e9d !important; font-family: 'NanumBarunGothicB';
+                                color: #292e9d; font-family: 'NanumBarunGothicB';
                             }
                         }
                         &:nth-child(4) {
@@ -224,7 +225,7 @@ a { text-decoration: none; color: inherit;}
             .tab-area {
                 border-top: 1px solid #d6d8dc; border-bottom: 1px solid #878a94;
                 width: 100%; background: #f9f9f9; position: relative; 
-                height: 47px; box-sizing: border-box; text-align: center; padding: 0 4px;
+                height: 47px; box-sizing: border-box; padding: 0 4px;
                 ul {
                     margin: 0 auto; padding: 0; white-space: nowrap; color: #333333;
                     scroll-snap-type: x; overflow-x: auto;
@@ -288,7 +289,7 @@ a { text-decoration: none; color: inherit;}
                         tr {
                             border-bottom: 1px solid #e1e3e6; display: table-row;
                             th {
-                                border-right: 1px solid #e1e3e6; color: #1a345e !important;
+                                border-right: 1px solid #e1e3e6; color: #1a345e;
                                 font-weight: normal; background: #f7f9fa; 
                                 text-align: left; 
                             }
@@ -315,10 +316,11 @@ a { text-decoration: none; color: inherit;}
                                     width: 37.7%;
                                     box-sizing: border-box; display: table-cell;
                                     background: #f7f9fa; border-right: 1px solid #e1e3e6;
-                                    padding: 9px 3% !important; vertical-align: top;
+                                    padding: 9px 3%; vertical-align: top;
                                 }
                                 td {
-                                    padding: 9px 3% !important;
+                                    padding: 9px 3%; vertical-align: top;
+                                    border-left: 1px solid #e1e3e6;
                                    &.break {
                                         word-break: break-all;
                                     }
@@ -326,13 +328,11 @@ a { text-decoration: none; color: inherit;}
                             }
                         }
                         &.type2 {
-                            line-height: 26px; display: table; table-layout: auto;
+                            line-height: 26px;
                             min-width: 348px;
                             tr {
                                 th {
-                                    padding: 10px 10px 9px 10px; display: table-cell;
-                                    &:first-child {
-                                    }
+                                    padding: 10px 10px 9px 10px;
                                     &:last-child {
                                         background: #f7f9fa url(/img/Mobile/m_btn_list.gif) no-repeat top right;
                                     }
@@ -349,14 +349,13 @@ a { text-decoration: none; color: inherit;}
                             }
                         }
                         &.type3 {
-                            line-height: 26px; display: table; table-layout: fixed; min-width: 336px;
-                            margin-bottom: 0;
+                            line-height: 26px; min-width: 331px; margin-bottom: 0;
                             tr {
                                 th {
-                                    padding: 10px 10px 9px 10px;
+                                    padding: 10px 10px 9px 10px; width: 25%;
                                 }
                                 td {
-                                    text-align: right; padding: 10px 10px 9px 10px; white-space: nowrap;
+                                    text-align: right; padding: 10px 10px 9px 10px;
                                 }
                                 &:nth-child(2n) {
                                     td {
@@ -382,13 +381,22 @@ a { text-decoration: none; color: inherit;}
                                     }
                                 }
                             }
-                            td {
-                                padding: 10px 10px 9px 10px; text-align: right; white-space: nowrap;
-                                &:first-child {
-                                    border-left: none; text-align: center; min-width: 88.5px;
-                                    box-sizing: border-box;
+                            tr {
+                                td {
+                                    padding: 10px 10px 9px 10px; text-align: right; white-space: nowrap;
+                                    display: table-cell;
+                                    &:first-child {
+                                        border-left: none; text-align: center; min-width: 88.5px;
+                                        box-sizing: border-box;
+                                    }
+                                }
+                                &:nth-child(2n) {
+                                    td {
+                                        background: #fbfcfc;
+                                    }
                                 }
                             }
+                            
                         }
                     }
                     .table-txt {
@@ -406,7 +414,7 @@ a { text-decoration: none; color: inherit;}
                     .date-box {
                         width: 100%; margin: 0 -18px 30px -18px; border: 18px solid #f5f6f7;
                         .date-search {
-                            width: 100%; border: 1px solid #c8cacc !important;
+                            width: 100%; border: 1px solid #c8cacc;
                             box-sizing: border-box; white-space: nowrap;
                             .title {
                                 font-size: 14px; font-family: 'NanumBarunGothicB';
@@ -439,7 +447,7 @@ a { text-decoration: none; color: inherit;}
                                     }
                                 }
                                 .period-2 {
-                                    display: inline-block; width: 4%; text-align: center;
+                                    display: inline-block; width: 4.5%; text-align: center;
                                     line-height: 16px;
                                 }
                             }
@@ -466,18 +474,24 @@ a { text-decoration: none; color: inherit;}
             .notice-top {
                 padding: 0 18px; border-top: 1px solid #323e51; font-size: 16px; line-height: 43px;
                 font-family: 'NanumBarunGothicB'; height: 100%; height: 41px;
-                border-bottom: 1px solid #cccfd3;
+                position: relative; box-sizing: border-box; color: #323e51;
                 &::first-letter {
                     color: #f94c00;
                 }
+                img {
+                    position: absolute; right: 18px; top: 42%;
+                    &#noticeOn {
+                        display: none;
+                    }
+                }
             }
             .notice-btm {
-                padding: 18px 16px;
+                padding: 18px 16px; display: none; border-top: 1px solid #cccfd3;
                 ul {
-                    margin: 0; padding: 0; line-height: 18px; letter-spacing: -0.03em;
+                    margin: 0; padding: 0; line-height: 18px; letter-spacing: -0.033em;
                     li {
                         padding-left: 9px; word-break: keep-all; word-wrap: break-word;
-                        background: url(/img/Mobile/blt_notice.gif) no-repeat 0 9px;
+                        background: url(/img/Mobile/blt_notice.gif) no-repeat 0 5px;
                         ul {
                             margin-top: 7px;
                             li {
@@ -495,42 +509,43 @@ a { text-decoration: none; color: inherit;}
     }
     /* footer */
     .footer {
-        width: 100%; background: #f1f3f6; 
-        border-top: 1px solid #e0052d; border-bottom: 1px solid #b5b8be;
+        width: 100%; background: #f1f3f6;
+        border-top: 1px solid #e0052d; 
         .foot-top {
             padding: 15px 20px 15px; border-bottom: 1px solid #b5b8be;
-            border-radius: 2px;
+            border-radius: 2px; box-sizing: border-box;
             .foot-top-info {
-                font-size: 16px; color: #333333; line-height: 1.1; letter-spacing: -0.03em;
+                font-size: 16px; line-height: 19px; letter-spacing: -0.029em;
                 span {
-                    display: inline-block; vertical-align: middle; font-size: 14px;
+                    display: inline-block; vertical-align: middle; font-size: 14px; box-sizing: border-box;
+                    margin-right: 2%;
                     &:first-child {
-                        margin-right: 30px !important;
+                        margin-right: 30px; color: #333333;
                     }
                     .phone-num {
+                        letter-spacing: -0.027em; vertical-align: middle;
                         img {
                             vertical-align: middle; padding: 0 3px; margin-left: 5px;
                         }
                     }
                     .kakaochat {
-                        display: block; height: 27px; margin-top: 8px;
-                        line-height: 27px;
-                        img {
-                            width: 27px; height: 27px; vertical-align: middle; padding-right: 7px;
-                        }
+                        display: block; height: 27px; margin-top: 8px; padding-left: 35px;
+                        line-height: 27px; letter-spacing: -0.03em;
+                        background: url(/img/Mobile/kakaochat.png) 1px 0 no-repeat; background-size: 27px;
                     }
                 }
             }
         }
         .foot-btm {
-            width:100%; 
+            width:100%; border-bottom: 1px solid #b5b8be;
             .foot-btm-menu {
                 padding: 10px 20px 0; letter-spacing: -0.027em; line-height: 1.1;
                 ul {
-                    font-size: 14px; padding: 5px 0; margin: 0; overflow: hidden;
+                    font-size: 14px; padding: 5px 0; margin: 0; overflow: hidden; box-sizing: border-box;
+                    line-height: 1.1;
                     li {
                         display: inline-block; padding: 0 2%; box-sizing: border-box;
-                        border-left: 1px solid #929394;
+                        border-left: 1px solid #929394; 
                         a {
                             font-size: 0.78em;
                         }
@@ -556,16 +571,31 @@ a { text-decoration: none; color: inherit;}
                 }
             }
             .foot-copyright {
-                letter-spacing: -0.042em; display: inline-block; margin: 0;
-                color: #818181; font-size: 10px; padding: 15px 0 15px 20px;
+                letter-spacing: -0.042em; display: inline-block; margin: 0; line-height: 1.1;
+                color: #818181; font-size: 10px; padding: 15px 0 15px 20px; text-align: center;
             }
         }
-        
     }
 }
-
-
-
+.scrollLock { overflow: hidden;}
+@media (min-width: 610px) {
+    .tab-table.type2 {
+        display: table; table-layout: fixed;
+    }
+}
+@media (min-width: 390px) {
+    .tab-table.type4 {
+        display: table; table-layout: fixed;
+    }
+}
+@media (min-width: 539px) {
+    .tab-arrow {
+        display: none;
+    }
+    .tab-area {
+        text-align: center;
+    }
+}
 /* font - noonnu.cc */
 @font-face {
     font-family: 'NanumBarunGothic';
@@ -574,7 +604,6 @@ a { text-decoration: none; color: inherit;}
     src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
     src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
 }
-
 @font-face {
     font-family: 'NanumBarunGothicB';
     font-style: normal;
@@ -582,23 +611,9 @@ a { text-decoration: none; color: inherit;}
     src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot');
     src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.ttf') format('truetype')
 }
-
 @font-face {
     font-family: "NanumBarunGothicUL";
     src: url("/fonts/NanumBarunGothicUltraLight.woff2") format("woff2");
     font-weight: 100;
     font-style: normal;
 }
-
-@keyframes fadeIn {
-    from {
-      opacity: 0;
-      transform-origin: top;
-      transform: scaleY(0);
-    }
-    to {
-      opacity: 1;
-      transform-origin: top;
-      transform: scaleY(1);
-    }
-  }

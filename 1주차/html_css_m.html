@@ -10,21 +10,21 @@
     <div class="mobile-content">
         <!-- 메뉴바 -->
         <div class="nav-box">
-            <div class="background"></div>
+            <div class="cover" id="background"></div>
             <div class="nav-btn">
                 <a href="#" class="hambuger">
                     <img src="/img/Mobile/btn_menu.gif" alt="btn_menu">
                 </a>
-                <a href="#none" class="tab-menu" onclick="tabMenuClick()">
+                <a href="#none" class="tab-menu" id="tab-menu">
                     <span>펀드검색</span>
-                    <img src="/img/Mobile/nav_arrow.gif" alt="nav_arrow_off" class="arrow-off">
-                    <img src="/img/Mobile/nav_arrow_off.gif" alt="nav_arrow_on" class="arrow-on">
+                    <img src="/img/Mobile/nav_arrow.gif" alt="nav_arrow_off" class="arrow-off" id="tab-arrow-off">
+                    <img src="/img/Mobile/nav_arrow_off.gif" alt="nav_arrow_on" class="arrow-on" id="tab-arrow-on">
                 </a>
                 <a href="#" class="nav-search">
                     <img src="/img/Mobile/btn_search.gif" alt="btn_search">
                 </a>
             </div>
-            <div class="tab-menu-con">
+            <div class="tab-menu-con" id="tab-menu-con">
                 <ul>
                     <li>펀드검색</li>
                     <li>랭킹펀드</li>
@@ -135,7 +135,7 @@
                 </div>
                 <!-- 탭내용 -->
                 <div class="tab-content">
-                    <div class="tab-body tab1 selected" id="tab-1">
+                    <div class="tab-body selected" id="tab-1">
                         <div class="title">주요내용</div>
                         <table class="tab-table type1">
                             <tr>
@@ -205,8 +205,8 @@
                             </tr>
                         </table>
                     </div>
-                    <div class="tab-body tab2" id="tab-2">bbb</div>
-                    <div class="tab-body tab3" id="tab-3">
+                    <div class="tab-body" id="tab-2">bbb</div>
+                    <div class="tab-body" id="tab-3">
                         <div class="title">수익분석
                             <span>기준일 : 2024.01.17</span>
                         </div>
@@ -309,8 +309,8 @@
                             </ul>
                         </div>
                     </div>
-                    <div class="tab-body tab4" id="tab-4">ddd</div>
-                    <div class="tab-body tab5" id="tab-5">
+                    <div class="tab-body" id="tab-4">ddd</div>
+                    <div class="tab-body" id="tab-5">
                         <!-- tab3일별기준가 조회박스 -->
                         <div class="date-box">
                             <div class="date-search">
@@ -473,9 +473,12 @@
                 </div>
             </div>
             <!-- notice -->
-            <div class="notice-area">
-                <div class="notice-top">NOTICE</div>
-                <div class="notice-btm">
+            <div class="notice-area" id="notice">
+                <div class="notice-top">NOTICE
+                    <img src="/img/Mobile/m_notice_off.gif" alt="noticeOff" id="noticeOff">
+                    <img src="/img/Mobile/m_notice_on.gif" alt="noticeOn" id="noticeOn">
+                </div>
+                <div class="notice-btm" id="noticeCon">
                     <ul>
                         <li>본 자료는 펀드평가회사 및 자산운용회사의 신뢰할만한 자료를 기초로 하여 작성된 것이나, 그 정확성이나 완전성을 당사가 보증하는 것은 아닙니다. 따라서 본 자료에 의존해 이루어진 투자 결과에 대해 당사는 법적 책임을 지지 않으므로 단순 참고 자료로만 이용해주시기 바랍니다.</li>
                         <li class="list-margin">
@@ -500,7 +503,7 @@
                         <a href="#none" class="phone-num">1599-8245<img src="/img/Common/ico_dot.gif" alt="dot"></a>
                         <a href="#none" class="phone-num">1588-8245</a>
                         <br>
-                        <a href="#none" class="kakaochat"><img src="/img/Mobile/kakaochat.png" alt="">카카오챗봇(FAQ)</a>
+                        <a href="#none" class="kakaochat">카카오챗봇(FAQ)</a>
                     </span>
                 </div>
             </div>
@@ -525,64 +528,100 @@
         </div>
     </div>
     <script>
-        function tabMenuClick() {
-            // onclick 삭제, id로 사용, 단순화
-            var tabMenuContent = document.querySelector('.tab-menu-con');
-            var arrowOn = document.querySelector('.arrow-on');
-            var arriwOff = document.querySelector('.arrow-off');
-            tabMenuContent.style.display = (tabMenuContent.style.display === 'none' || tabMenuContent.style.display === '') ? 'block' : 'none';
-            arrowOn.style.display = (tabMenuContent.style.display === 'block' || tabMenuContent.style.display === '') ? 'inline-block' : 'none';
-            arriwOff.style.display = (tabMenuContent.style.display === 'none' || tabMenuContent.style.display === '') ? '' : 'none';
-        }
-        document.addEventListener('DOMContentLoaded', function() {
-            // 탭 슬라이드 할때 화살표 표시
-            var tabSlide = document.getElementById('tabSlide');
-            var arrowLeft = document.getElementById('arrowLeft');
-            var arrowRight = document.getElementById('arrowRight');
-            tabSlide.addEventListener('scroll', function() {
-                console.log('slide');
-                if (tabSlide.scrollLeft != 0) {
-                    arrowLeft.classList.add('visible');
-                } else {
-                    arrowLeft.classList.remove('visible');
-                }
-                if (tabSlide.scrollLeft != tabSlide.scrollWidth - tabSlide.clientWidth) {
-                    arrowRight.classList.remove('visible2');
-                } else {
-                    arrowRight.classList.add('visible2');
-                }
-            });
-            // 좌우 이동 버튼
-            arrowLeft.addEventListener('click', function() {
-                slide(-130);
-            });
-            arrowRight.addEventListener('click', function() {
-                slide(130);
-            });
-            function slide(distance) {
-                tabSlide.scrollTo({
-                    left: tabSlide.scrollLeft + distance,
-                    behavior: 'smooth'
-                });
+        // 탭메뉴 활성화
+        const background = document.getElementById('background');
+        const button = document.getElementById('tab-menu');
+        const tabCon = document.getElementById('tab-menu-con');
+        const body = document.getElementsByTagName('body')[0];
+        const tabArrowOff = document.getElementById('tab-arrow-off');
+        const tabArrowOn = document.getElementById('tab-arrow-on');
+        button.addEventListener('click', function() {
+            if (tabCon.style.height == '') {
+                background.style.display = 'block';
+                tabCon.style.height = '390px'
+                body.classList.add('scrollLock');
+                tabArrowOn.style.display = 'block';
+                tabArrowOff.style.display = 'none';
+            } else {
+                tabCon.style.height = ''
+                setTimeout(function() {
+                    background.style.display = 'none';
+                }, 700); 
+                body.classList.remove('scrollLock');
+                tabArrowOn.style.display = 'none';
+                tabArrowOff.style.display = 'block';
             }
-            // 탭 전환
-            var tabLinks = document.querySelectorAll('#tabSlide li');
-            tabLinks.forEach(function(link) {
-                link.addEventListener('click', function() {
-                    var tabId = this.getAttribute('data-tab');
-                    tabLinks.forEach(function(tabLink) {
-                        tabLink.classList.remove('selected');
-                    });
-                    var tabBody = document.querySelectorAll('.tab-body');
-                    tabBody.forEach(function(tabContent) {
-                        tabContent.classList.remove('selected');
-                    });
-
-                    this.classList.add('selected');
-                    document.getElementById(tabId).classList.add('selected');
-                });
+        });
+        // background클릭
+        background.addEventListener('click', function() {
+            tabCon.style.height = ''
+            setTimeout(function() {
+                background.style.display = 'none';
+            }, 700); 
+            body.classList.remove('scrollLock');
+            tabArrowOn.style.display = 'none';
+            tabArrowOff.style.display = 'block';
+        });
+        // 탭 슬라이드 할때 화살표 표시
+        var tabSlide = document.getElementById('tabSlide');
+        var arrowLeft = document.getElementById('arrowLeft');
+        var arrowRight = document.getElementById('arrowRight');
+        tabSlide.addEventListener('scroll', function() {
+            arrowLeft.classList.toggle('visible', tabSlide.scrollLeft !== 0);
+            arrowRight.classList.toggle('visible2', tabSlide.scrollLeft == (tabSlide.scrollWidth - tabSlide.clientWidth ));
+        });
+        // 좌우 이동 버튼
+        arrowLeft.addEventListener('click', function() {
+            slide(-130);
+        });
+        arrowRight.addEventListener('click', function() {
+            slide(130);
+        });
+        function slide(distance) {
+            tabSlide.scrollTo({
+                left: tabSlide.scrollLeft + distance,
+                behavior: 'smooth'
             });
-        });    
+        }
+        // 탭 전환 --- 수정 중
+        var tabLinks = document.querySelectorAll('#tabSlide li');
+        var selectedTab = document.querySelector('.tab-btn.selected');
+        var selectedCon = document.querySelector('.tab-body.selected');
+        tabLinks.forEach(function(link) {
+            link.addEventListener('click', function() {
+                var tabId = this.getAttribute('data-tab');
+
+                selectedTab.classList.remove('selected');
+                selectedTab = this;
+                this.classList.add('selected');
+
+                selectedCon.classList.remove('selected');
+                selectedCon = this;
+                document.getElementById(tabId).classList.add('selected');
+
+                // var tabBody = document.querySelectorAll('.tab-body');
+                // tabBody.forEach(function(tabContent) {
+                //     tabContent
+                // });
+                
+                // 
+            });
+        });
+        // notice 클릭
+        var notice = document.getElementById('notice');
+
+        notice.addEventListener('click', function() {
+
+            const noticeCon = document.getElementById('noticeCon');
+            const noticeOff = document.getElementById('noticeOff');
+            const noticeOn = document.getElementById('noticeOn');
+            
+            const noticeArrow = (noticeCon.style.display === 'none' || noticeCon.style.display === ''); 
+
+            noticeCon.style.display = noticeArrow ? 'block' : 'none';
+            noticeOn.style.display = noticeArrow ? 'block' : 'none';
+            noticeOff.style.display = noticeArrow ? 'none' : 'block';
+        });
     </script>
 </body>
 </html>
