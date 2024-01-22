@@ -1,0 +1,108 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-4주차</title>
+    <style>
+        #select-table, #inner-row, .m-smallsize {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="select-table">
+        <div><span>투자유형</span></div>
+        <div><img src="/img/Common/depth_off.gif" alt="펀드"></div>
+        <div><span>증권</span></div>
+        <div><span>주식파생형</span></div>
+    
+        <div id="inner-row">
+            <div class="m-smallsize m-small1">
+                <div><span>6개월 수익률</span></div>
+                <div><span>6.88 %</span></div>
+            </div>
+        </div>
+        <div class="m-smallsize m-small2">
+            <div><span>기준가</span></div>
+            <div><span>1,053.40</span></div>
+            <div><span>▲1.04</span></div>
+        </div>
+    </div>
+    <!-- 검색 화면 -->
+    <div class="node_search">
+        <div class="box">
+            <div class="one">
+                <span>id</span>
+                <input type="text" id="inputId" >
+            </div>
+            <div class="two">
+                <span>노드명</span>
+                <input type="text" id="inputNode">
+            </div>
+            <div class="three">
+                <span>속성명</span>
+                <input type="text" id="inputName">
+            </div>
+            <div class="four">
+                <span>속성값</span>
+                <input type="text" id="inputData">
+            </div>
+        </div>
+        <button id="javaScript">검색(JavaScript)</button>
+        <div id="javaScriptResult"></div>
+    </div>
+    <script>
+        let javaScriptBtn = document.getElementById('javaScript');
+        let children = document.body;
+        // 버튼클릭이벤트
+        javaScriptBtn.addEventListener("click", () => {
+            let Count = 0;
+            Count = nodeCount(children);
+            document.getElementById("javaScriptResult").innerHTML = "결과: JavaScript - 탐색된 노드 수 : " + Count;
+            let inputId = document.getElementById("inputId").value;
+            let inputNode = document.getElementById("inputNode").value;
+            let inputName = document.getElementById("inputName").value;
+            let inputData = document.getElementById("inputData").value;
+            
+
+            if ( inputId == "" && inputNode == "" && inputName == "" && inputData == "" ) {
+                console.log("검색어 없음");
+                return null;
+            } else {
+                searchId();  
+            }
+        });
+
+
+        // 아이디 존재 유무
+        function searchId () {
+            let idSearch = document.getElementById(inputId);
+            if (idSearch == null) { console.log("해당하는 id가 없습니다."); }
+            else { nodeCount = 1; console.log(nodeCount); }
+        }
+        
+
+
+        
+        
+        // 전체에서 노드명 같은 거 찾기
+        function nodeCount(children) {
+            let node = 0;
+            if (children.childElementCount == 0) {
+                return node;
+            }
+            for ( let i = 0; i < children.childElementCount; i ++) {
+                if (children.children[i].tagName == inputNode.value.toUpperCase()) {
+                    node += 1;
+                } 
+                node += nodeCount(children.children[i]);
+            }
+            return node;
+        }
+        
+        console.log("div 20/ span 12")
+
+    </script>
+</body>
+</html>

@@ -583,7 +583,7 @@
                 behavior: 'smooth'
             });
         }
-        // 탭 전환 --- 수정 중
+        // 탭 전환
         var tabLinks = document.querySelectorAll('#tabSlide li');
         var selectedTab = document.querySelector('.tab-btn.selected');
         var selectedCon = document.querySelector('.tab-body.selected');
@@ -596,15 +596,8 @@
                 this.classList.add('selected');
 
                 selectedCon.classList.remove('selected');
-                selectedCon = this;
-                document.getElementById(tabId).classList.add('selected');
-
-                // var tabBody = document.querySelectorAll('.tab-body');
-                // tabBody.forEach(function(tabContent) {
-                //     tabContent
-                // });
-                
-                // 
+                selectedCon = document.getElementById(tabId);
+                selectedCon.classList.add('selected');
             });
         });
         // notice 클릭
