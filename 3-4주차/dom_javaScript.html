@@ -5,18 +5,19 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>3-4주차</title>
     <style>
-        #select-table, #inner-row, .m-smallsize {
+        #select-table {
             display: none;
         }
     </style>
 </head>
 <body>
     <div id="select-table">
-        <div><span>투자유형</span></div>
-        <div><img src="/img/Common/depth_off.gif" alt="펀드"></div>
-        <div><span>증권</span></div>
-        <div><span>주식파생형</span></div>
-    
+        <div class="m-bigsize m-bigleft">
+            <div><span>투자유형</span></div>
+            <div><img src="/img/Common/depth_off.gif" alt="펀드"></div>
+            <div><span>증권</span></div>
+            <div><span>주식파생형</span></div>
+        </div>
         <div id="inner-row">
             <div class="m-smallsize m-small1">
                 <div><span>6개월 수익률</span></div>
@@ -30,7 +31,7 @@
         </div>
     </div>
     <!-- 검색 화면 -->
-    <div class="node_search">
+    <div class="node-search">
         <div class="box">
             <div class="one">
                 <span>id</span>
@@ -54,54 +55,92 @@
     </div>
     <script>
         let javaScriptBtn = document.getElementById('javaScript');
-        let children = document.body;
+        let search = document.body;
         // 버튼클릭이벤트
         javaScriptBtn.addEventListener("click", () => {
-            let Count = 0;
-            Count = nodeCount(children);
-            document.getElementById("javaScriptResult").innerHTML = "결과: JavaScript - 탐색된 노드 수 : " + Count;
+            let count = 0;
+            
+
             let inputId = document.getElementById("inputId").value;
             let inputNode = document.getElementById("inputNode").value;
             let inputName = document.getElementById("inputName").value;
             let inputData = document.getElementById("inputData").value;
             
-
+            // 전부 미입력일때
             if ( inputId == "" && inputNode == "" && inputName == "" && inputData == "" ) {
-                console.log("검색어 없음");
-                return null;
+                count = 0;
             } else {
-                searchId();  
+                count = searchId();
             }
+
+            document.getElementById("javaScriptResult").innerHTML = "결과: JavaScript - 탐색된 노드 수 : " + count;
         });
 
 
-        // 아이디 존재 유무
-        function searchId () {
-            let idSearch = document.getElementById(inputId);
-            if (idSearch == null) { console.log("해당하는 id가 없습니다."); }
-            else { nodeCount = 1; console.log(nodeCount); }
+        // 아이디 존재 유무 --- 아이디인풋있음+검색결과 없음 => 0
+        function searchId() {
+            if ( inputId.value != "" && document.getElementById(inputId.value) == null ) {
+                return 5;
+            } else {
+                search = document.getElementById(inputId.value) ? document.getElementById(inputId.value) : document.body;
+                console.log(search);
+                return inputNode.value != "" ? nodeCount(search) : attNmCount(search);
+            }
         }
         
 
-
-        
-        
-        // 전체에서 노드명 같은 거 찾기
-        function nodeCount(children) {
+        // 노드명으로 검색
+        function nodeCount(search) {
             let node = 0;
-            if (children.childElementCount == 0) {
+            if ( search.childElementCount == 0 ) {
                 return node;
             }
-            for ( let i = 0; i < children.childElementCount; i ++) {
-                if (children.children[i].tagName == inputNode.value.toUpperCase()) {
+            for ( let i = 0; i < search.childElementCount; i++ ) {
+                if (search.children[i].tagName == inputNode.value.toUpperCase()) {
                     node += 1;
-                } 
-                node += nodeCount(children.children[i]);
+                }
+                node += nodeCount(search.children[i]);
             }
             return node;
         }
-        
-        console.log("div 20/ span 12")
+
+
+
+        // 속성명 검색
+        function attNmCount(search) {
+            let node = 0;
+            if (inputName.value == "") return attCount();
+            if ( search.childElementCount == 0 ) {
+                return node;
+            }
+            for ( let i = 0; i < search.childElementCount; i++ ) {
+                if (search.children[i].hasAttribute(inputName.value)) {
+                    node += 1;
+                }
+                node += attNmCount(search.children[i]);
+            }
+            console.log(node);
+            return node;
+        }
+
+
+        // 속성값 검색
+        function attCount() {
+            let node = 0;
+            if (inputData.value == "") return 1;
+            // if (search.children[0].children[0].getAttribute('class').includes("m-bigsize")) {
+            //     console.log("yes");
+            // } else {
+            //     console.log("bye");
+            // }
+        }
+
+        function test() {
+            console.log(search.children[0].children[0].classList);
+        }
+
+        test();
+        console.log("전체 = div 21/ span 12 --- select-table = div 13 / span 8")
 
     </script>
 </body>
