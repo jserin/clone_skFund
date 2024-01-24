@@ -20,7 +20,7 @@
         </div>
         <div id="inner-row">
             <div class="m-smallsize m-small1">
-                <div><span>6개월 수익률</span></div>
+                <div alt="aaaa"><span>6개월 수익률</span></div>
                 <div><span>6.88 %</span></div>
             </div>
         </div>
@@ -29,11 +29,12 @@
             <div><span>1,053.40</span></div>
             <div><span>▲1.04</span></div>
         </div>
-    </div>
+    </div> <!--  23 -->
     <!-- 검색 화면 -->
     <div class="node-search">
         <div class="box">
             <div class="one">
+                <div><img src="/img/Common/depth_off.gif" alt="펀드" style="display: none;"></div>
                 <span>id</span>
                 <input type="text" id="inputId" >
             </div>
@@ -52,96 +53,204 @@
         </div>
         <button id="javaScript">검색(JavaScript)</button>
         <div id="javaScriptResult"></div>
-    </div>
+    </div> <!--  18 -->
     <script>
         let javaScriptBtn = document.getElementById('javaScript');
-        let search = document.body;
+        let boundary
+        let result = 0;
+        let count = 0;
+        let count2 = 0;
+        let count3 = 0;
+        
         // 버튼클릭이벤트
         javaScriptBtn.addEventListener("click", () => {
-            let count = 0;
-            
-
-            let inputId = document.getElementById("inputId").value;
-            let inputNode = document.getElementById("inputNode").value;
-            let inputName = document.getElementById("inputName").value;
-            let inputData = document.getElementById("inputData").value;
+            const inputId = document.getElementById("inputId");
+            const inputNode = document.getElementById("inputNode");
+            const inputName = document.getElementById("inputName");
+            const inputData = document.getElementById("inputData");
+            boundary = document.body;
+            result = 0;
+            count = 0;
+            count2 = 0;
+            count3 = 0;
             
             // 전부 미입력일때
-            if ( inputId == "" && inputNode == "" && inputName == "" && inputData == "" ) {
-                count = 0;
+            if ( inputId.value == "" && inputNode.value == "" && inputName.value == "" && inputData.value == "") {
+                console.log("입력 없음");
+                return count;
             } else {
-                count = searchId();
+                count = test(boundary);
+                boundary = test(boundary) == 0 ? boundary : document.getElementById(inputId.value);
+                console.log(boundary);
+                count2 = test2(boundary);
+                console.log("aaa" + test2(boundary).valueOf(count3));
+                test3(boundary);
             }
 
-            document.getElementById("javaScriptResult").innerHTML = "결과: JavaScript - 탐색된 노드 수 : " + count;
+            if (inputData.value != "") {
+                result = count2;
+            } else if (inputName.value != "") {
+                result = count3;
+            } else if ( inputNode.value != "") {
+                result = count2;
+            } else {
+                result = count;
+            }
+
+            document.getElementById("javaScriptResult").innerHTML = "결과: JavaScript " + 
+            count + "  node :" + count2  + " bbbb  "+ count3+" dddddd " + result;
         });
 
 
-        // 아이디 존재 유무 --- 아이디인풋있음+검색결과 없음 => 0
-        function searchId() {
-            if ( inputId.value != "" && document.getElementById(inputId.value) == null ) {
-                return 5;
-            } else {
-                search = document.getElementById(inputId.value) ? document.getElementById(inputId.value) : document.body;
-                console.log(search);
-                return inputNode.value != "" ? nodeCount(search) : attNmCount(search);
+
+
+
+
+
+        // body에서 전체 children 찾기
+        function test(boundary) {
+            let num = 0;
+            if ( boundary.childElementCount == 0 ) { return num; }
+            for (let i = 0; i < boundary.childElementCount; i++ ) {
+                if ( boundary.children[i].getAttribute('id') == inputId.value) {
+                    num += 1;
+                } 
+                num += test(boundary.children[i]);
             }
+            
+            return num;
+        }
+
+        function getAttId() {
+            
+        }
+
+        function test2(boundary) {
+            let num = 0;
+            let attNum = 0;
+            let boundary2;
+            
+            if ( boundary.childElementCount == 0 ) { return num; }
+            for (let i = 0; i < boundary.childElementCount; i++ ) {
+                if ( boundary.children[i].tagName == inputNode.value.toUpperCase()) {
+                    num += 1;
+                    if (inputName.value != "" && checkAttNm(boundary.children[i])) {
+                        count3 += 1;
+                    }
+                }
+                num += test2(boundary.children[i]);
+            }
+            console.log("test 2 att : "+ count3);
+            console.log("tagName : " + num);
+            return num;
+        }
+         
+        function test3(boundary) {
+            let num = 0;
+            if ( boundary.childElementCount == 0 ) { return num; }
+            for (let i = 0; i < boundary.childElementCount; i++ ) {
+                if ( boundary.children[i].hasAttribute(inputName.value)) {
+                    num += 1;
+                }
+                console.log(num);
+                num += test3(boundary.children[i]);
+            }
+            
+            console.log("attCount : " + num);
+            return num;
         }
         
-
-        // 노드명으로 검색
-        function nodeCount(search) {
-            let node = 0;
-            if ( search.childElementCount == 0 ) {
-                return node;
+        function checkAttNm(boundary) {
+            if ( boundary.hasAttribute(inputName.value)) {
+                return true;
             }
-            for ( let i = 0; i < search.childElementCount; i++ ) {
-                if (search.children[i].tagName == inputNode.value.toUpperCase()) {
-                    node += 1;
-                }
-                node += nodeCount(search.children[i]);
-            }
-            return node;
+            return false;
         }
 
+        
+        console.log("전체 = div 22/ span 12 --- select-table = div 13 / span 8")
 
 
-        // 속성명 검색
-        function attNmCount(search) {
-            let node = 0;
-            if (inputName.value == "") return attCount();
-            if ( search.childElementCount == 0 ) {
-                return node;
-            }
-            for ( let i = 0; i < search.childElementCount; i++ ) {
-                if (search.children[i].hasAttribute(inputName.value)) {
-                    node += 1;
-                }
-                node += attNmCount(search.children[i]);
-            }
-            console.log(node);
-            return node;
-        }
 
 
-        // 속성값 검색
-        function attCount() {
-            let node = 0;
-            if (inputData.value == "") return 1;
-            // if (search.children[0].children[0].getAttribute('class').includes("m-bigsize")) {
-            //     console.log("yes");
-            // } else {
-            //     console.log("bye");
-            // }
-        }
 
-        function test() {
-            console.log(search.children[0].children[0].classList);
-        }
 
-        test();
-        console.log("전체 = div 21/ span 12 --- select-table = div 13 / span 8")
+
+        // 아이디 존재 유무 --- 아이디인풋있음+검색결과 없음 => 0
+        // function searchId() {
+        //     if ( inputId.value != "" && document.getElementById(inputId.value) == null ) {
+        //         return 5;
+        //     } else {
+        //         search = document.getElementById(inputId.value) ? document.getElementById(inputId.value) : document.body;
+        //         console.log(search);
+        //         return inputNode.value != "" ? nodeCount(search) : attNmCount(search);
+        //     }
+        // }
+        
+
+        
+        // // 노드명으로 검색 + 속성명
+        // function nodeCount(search) {
+        //     let node = 0;
+        //     if ( search.childElementCount == 0 ) {
+        //         return node;
+        //     }
+        //     for ( let i = 0; i < search.childElementCount; i++ ) {
+        //         if (search.children[i].tagName == inputNode.value.toUpperCase()) {
+        //             if ( inputName.value != "" && attNmCount2(search.children[i]) == true) { attnode += 1;}
+        //             node += 1;
+        //         }
+        //         node += nodeCount(search.children[i]);
+        //     }
+            
+        //     console.log("nodeCount :" + node + "  attnode : " + attnode);
+        //     return node;
+        // }
+
+
+
+        // // 속성명만 검색
+        // function attNmCount(search) {
+        //     let node = 0;
+        //     console.log("attNm start");
+        //     if (inputName.value == "") return 1;
+        //     if ( search.childElementCount == 0 ) {
+        //         return node;
+        //     }
+        //     for ( let i = 0; i < search.childElementCount; i++ ) {
+        //         if (search.children[i].hasAttribute(inputName.value)) {
+        //             node += 1;
+        //         }
+        //         node += attNmCount(search.children[i]);
+        //     }
+        //     console.log("attcount: " +node);
+        //     return node;
+        // }
+
+        // // 노드명 -> 속성명 찾기
+        // function attNmCount2(search) {
+        //     let node = 0;
+        //     console.log("attNm start");
+        //     if (search.hasAttribute(inputName.value)) {
+        //         return true;
+        //     }
+        //     return false;
+        // }
+
+
+        // // 속성값 검색
+        // function attDataCount() {
+        //     let node = 0;
+        //     if (search.children[0].children[0].getAttribute('class').includes("m-bigsize")) {
+        //         console.log("yes");
+        //     } else {
+        //         console.log("bye");
+        //     }
+        // }
 
     </script>
 </body>
 </html>
+
+
+
