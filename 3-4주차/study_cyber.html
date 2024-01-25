@@ -1,0 +1,182 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>3-4주차</title>
+    <style>
+        #select-table {
+            display: none;
+        }
+    </style>
+</head>
+<body>
+    <div id="select-table">
+        <div class="m-bigsize m-bigleft">
+            <div><span>투자유형</span></div>
+            <div><img src="#" alt="펀드"></div>
+            <div><span>증권</span></div>
+            <div><span>주식파생형</span></div>
+        </div>
+        <div id="inner-row">
+            <div class="m-smallsize m-small1">
+                <div alt="aaaa"><span>6개월 수익률</span></div>
+                <div><span>6.88 %</span></div>
+            </div>
+        </div>
+        <div class="m-smallsize m-small2">
+            <div><span>기준가</span></div>
+            <div><span>1,053.40</span></div>
+            <div><span>▲1.04</span></div>
+        </div>
+    </div>
+    <!-- 검색 화면 -->
+    <div class="node-search">
+        <div class="box">
+            <div class="one">
+                <div><img src="#" alt="펀드" style="display: none;"></div>
+                <span>id</span>
+                <input type="text" id="inputId" >
+            </div>
+            <div class="two">
+                <span>노드명</span>
+                <input type="text" id="inputNode">
+            </div>
+            <div class="three">
+                <span class="펀드">속성명</span>
+                <input type="text" id="inputAttrNm">
+            </div>
+            <div class="four">
+                <span>속성값</span>
+                <input type="text" id="inputAttrDt">
+            </div>
+        </div>
+        <button id="javaScript">검색(JavaScript)</button>
+        <div id="javaScriptResult"></div>
+    </div>
+    <script>
+        let javaScriptBtn = document.getElementById('javaScript');
+        let boundary = document.body;
+        let result = 0;
+
+        // 버튼클릭이벤트
+        javaScriptBtn.addEventListener("click", () => {
+            const inputId = document.getElementById("inputId");
+            const inputNode = document.getElementById("inputNode");
+            const inputAttrNm = document.getElementById("inputAttrNm");
+            const inputAttrDt = document.getElementById("inputAttrDt");
+            boundary = document.body;
+            result = 0;
+            count = 0;
+
+
+            if ( inputId.value != "" && findById() == 0 ) {
+                console.log("id 결과 없음");
+                result = 0;
+            } else if ( inputId.value != "" && findById() == 1) {
+                result = 1;
+            } else {
+                boundary = findById() == 1 ? document.getElementById(inputId.value) : boundary;
+                console.log(boundary);
+                result = find(boundary);
+            }
+
+            // result = test(boundary);
+            
+
+            document.getElementById("javaScriptResult").innerHTML = "결과: JavaScript " + result;
+        });
+
+        function commonFunc2(boundary, condition) {
+            let num = 0;
+            if ( boundary.childElementCount == 0 ) { return num; }
+            
+            for (let i = 0; i < boundary.childElementCount; i++ ) {
+                num += condition(boundary.children[i]);
+                num += commonFunc2(boundary.children[i], condition);
+                
+            }
+            console.log("aa"+num);
+            return num;
+        }
+
+        function test(boundary) {
+            let num = 0;
+            num += commonFunc2(boundary, (condition) => {
+                if ( inputNode.value != "" ) {
+                    return findByNode(condition);
+                } else if (inputAttrNm.value != "") {
+                    return findByAttrNm(condition);
+                } else {
+                    return findByAttrDt(condition);
+                }
+            })
+            return num;
+        }
+
+        function find(boundary) {
+            let num = 0;
+            num += commonFunc2(boundary, (condition) => {
+                if ( inputNode.value != "" ) {
+                    return findByNode(condition);
+                } else if (inputAttrNm.value != "") {
+                    return findByAttrNm(condition);
+                } else {
+                    return findByAttrDt(condition);
+                }
+            })
+            return num;
+        }
+
+        function findByNode(boundary) {
+            if (boundary.tagName == inputNode.value.toUpperCase()) {
+                if ( inputAttrNm.value != "" && inputAttrDt.value == "") {
+                    return findByAttrNm(boundary);
+                } else if (inputAttrDt.value != "") {
+                    return findByAttrDt(boundary);
+                } else {
+                    return 1;
+                }
+            }
+            return 0;
+        }
+
+        // 속성명 있고 속성값없을때, 속성값만 있을때
+        function findByAttrNm(boundary) {
+            let num = 0;
+            for (let x = 0; x < boundary.attributes.length; x++) {
+                if (boundary.attributes[x].nodeName == inputAttrNm.value ) {
+                    if (inputAttrDt.value != "") {
+                        return findByAttrDt(boundary.attributes[x]);
+                    } else {
+                        num++;
+                    }
+                }
+            }
+            return num;
+        }
+
+        function findByAttrDt(boundary) {
+            let num = 0;
+            for (let x = 0; x < boundary.attributes.length; x++) {
+                if (boundary.attributes[x].nodeValue.includes(inputAttrDt.value) ) {
+                    num++;
+                }
+            }
+            return num;
+        }
+
+        
+
+        function findById() {
+            if ( document.getElementById(inputId.value) ) {
+                return 1;
+            }
+            return 0;
+        }
+
+    </script>
+</body>
+</html>
+
+
