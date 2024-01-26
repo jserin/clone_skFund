@@ -9,6 +9,7 @@
             display: none;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
     <div id="select-table">
@@ -52,35 +53,39 @@
             </div>
         </div>
         <button id="javaScript">검색(JavaScript)</button>
-        <div id="javaScriptResult"></div>
+        <button id="jQuery">검색(jQuery)</button>
+        <div id="scriptResult"></div>
+        <div id="jQueryResult"></div>
     </div>
     <script>
         const javaScriptBtn = document.getElementById('javaScript');
         let boundary = document.body;
-        let result = 0;
+        let scriptResult = 0;
+        let jQueryResult = 0;
 
-        // 버튼클릭이벤트
+        const inputId = document.getElementById("inputId");
+        const inputNode = document.getElementById("inputNode");
+        const inputAttrNm = document.getElementById("inputAttrNm");
+        const inputAttrDt = document.getElementById("inputAttrDt");
+
+
+        // 버튼클릭이벤트 -- JavaScript
         javaScriptBtn.addEventListener("click", () => {
-            const inputId = document.getElementById("inputId");
-            const inputNode = document.getElementById("inputNode");
-            const inputAttrNm = document.getElementById("inputAttrNm");
-            const inputAttrDt = document.getElementById("inputAttrDt");
             boundary = document.body;
-            result = 0;
+            scriptResult = 0;
 
 
             if ( inputId.value && !findById() ) {
                 console.log("id 결과 없음");
-                result = 0;
+                scriptResult = 0;
             } else if (findById() && !inputNode.value && !inputAttrNm.value && !inputAttrDt.value ) {
-                result = 1;
+                scriptResult = 1;
             } else {
                 boundary = findById() ? document.getElementById(inputId.value) : boundary;
-                console.log(boundary);
-                result = find(boundary);
+                scriptResult = find(boundary);
             }
 
-            document.getElementById("javaScriptResult").innerHTML = "결과: JavaScript " + result;
+            document.getElementById("scriptResult").innerHTML = "결과: JavaScript 개수 : " + scriptResult;
         });
 
         function commonFunc(boundary, condition) {
@@ -169,6 +174,35 @@
             }
             return num;
         }
+
+
+        // 버튼클릭이벤트 -- jQuery
+        $('#jQuery').click(function() {
+            boundary = $('body');
+            jQueryResult = 0;
+
+            if ($("#inputId").val() && !($('#' + $("#inputId").val()).length)) {
+                jQueryResult = 0;
+            } else if ($('#' + $("#inputId").val()).length && !($('#inputNode').val()) && !($('#inputAttrNm').val()) && !($('#inputAttrDt').val())) {
+                jQueryResult = 1;
+            } else {
+                boundary = $('#' + $("#inputId").val()).length ? $('#' + $("#inputId").val()) : boundary;
+                console.log(boundary);
+                jQueryResult = jQueryfind(boundary);
+            }
+
+
+            $('#jQueryResult').text("결과: jQuery 개수 : " + jQueryResult);
+        })
+
+        var jQueryfind = function(boundary) {
+            let num = 0;
+            
+            
+        }
+        
+        jQueryfind(boundary);
+        
 
     </script>
 </body>
