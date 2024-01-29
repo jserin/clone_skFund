@@ -179,54 +179,98 @@
 
 
 
-        const jInputId = $("#inputId").val();
-        const jInputNode = $("#inputNode").val();
-        const jInputAttrNm = $("#inputAttrNm").val();
-        const jInputAttrDt = $("#inputAttrDt").val();
+        const jInputId = $("#inputId");
+        const jInputNode = $("#inputNode");
+        const jInputAttrNm = $("#inputAttrNm");
+        const jInputAttrDt = $("#inputAttrDt");
 
         // 버튼클릭이벤트 -- jQuery
         $('#jQuery').click(function() {
             
-            boundary = $('body');
+            boundary = $('*');
             jQueryResult = 0;
-
             let example = new Array();
+            let nodeArr;
+
             
-            if (!jInputId && !jInputNode && !jInputAttrNm && !jInputAttrDt) {
+            if (!jInputId.val() && !jInputNode.val() && !jInputAttrNm.val() && !jInputAttrDt.val()) {
                 console.log("입력 없음");
                 return $('#jQueryResult').text("결과: jQuery 개수 : " + jQueryResult);
-            } else if ($('#' + jInputId).length && !jInputNode && !jInputAttrNm && !jInputAttrDt) {
+            } else if (jInputId.val() && $('#' + jInputId.val()).length && !jInputNode.val() && !jInputAttrNm.val() && !jInputAttrDt.val()) {
                 jQueryResult = 1000;
                 return $('#jQueryResult').text("결과: jQuery 개수 : " + jQueryResult);
             }
 
-            if (jInputId && $('#' + jInputId).length) {
-                searchByNode();
+
+            /* 검색 시작 */
+            if (jInputId.val() && $('#' + jInputId.val()).length) {
+                // 아이디값이 있고 다음 입력값이 있을때
+                searchByNode(example);
                 jQueryResult = example.length;
-            } else if (jInputNode) {
-                
+            } else if (jInputNode.val()) {
+                // 아이디 없고 노드명 있을때
+                nodeArr = $(jInputNode.val());
+                if (jInputAttrNm.val()) {
+                    nodeArr.each(function(i) {
+                        if (nodeArr[i].hasAttribute(jInputAttrNm.val())) {
+                            example.push(nodeArr[i]);
+                        }
+                    })
+                    jQueryResult = example.length;
+                } else {
+                    jQueryResult = nodeArr.length;
+                }
+            } else if (jInputAttrNm.val()) {
+                //아이디 노드명 없고 속성명잇을떄
+                nodeArr = $("[" + jInputAttrNm.val() + "]");
+                if (jInputAttrDt.val()) {
+                    nodeArr.each(function(i) {
+                        if (nodeArr[i].getAttribute(jInputAttrNm.val()) == jInputAttrDt.val()) {     
+                            example.push(nodeArr[i]);
+                        }
+                        if (nodeArr[i].classList.length > 1) {
+                            for (let a = 0; a < nodeArr[i].classList.length; a++) {
+                                if (nodeArr[i].classList[a] == jInputAttrDt.val()) {
+                                    example.push(nodeArr[i]);
+                                }
+                            }
+                        }
+                    })               
+                    jQueryResult = example.length;
+                } else {
+                    jQueryResult = nodeArr.length;
+                }
+            } else {
+                // 속성값만 있을 때
+                console.log($("[value='alt']"))
+                // let count = 0;
+                // boundary.each(function(i) {
+                //     console.log(boundary);
+                //     if (this.hasAttribute(jInputAttrDt.val())) {
+                //         count++;
+                //     }
+                // })
+                // jQueryResult = count;
             }
             console.log(example);
-
-            
             
             $('#jQueryResult').text("결과: jQuery 개수 : " + jQueryResult);
         })
 
-        let searchByNode = function() {
-            if (jInputNode) {
-                let nodeArr = $('#' + jInputId +" " + jInputNode)
+        function searchByNode(example) {
+            if (jInputNode.val()) {
+                let nodeArr = $('#' + jInputId.val()).find(jInputNode.val());
 
-                if (jInputAttrNm) {
+                if (jInputAttrNm.val()) {
                     nodeArr.each(function(i) {
-                        if (nodeArr[i].hasAttribute(jInputAttrNm)) {
-                            if (jInputAttrDt) {
-                                if (nodeArr[i].getAttribute(jInputAttrNm) == jInputAttrDt) {
+                        if (nodeArr[i].hasAttribute(jInputAttrNm.val())) {
+                            if (jInputAttrDt.val()) {
+                                if (nodeArr[i].getAttribute(jInputAttrNm.val()) == jInputAttrDt.val()) {
                                     example.push(nodeArr[i]);                                        
                                 }
                                 if (nodeArr[i].classList.length > 1) {
                                     for (let a = 0; a < nodeArr[i].classList.length; a++) {
-                                        if (nodeArr[i].classList[a] == jInputAttrDt) {
+                                        if (nodeArr[i].classList[a] == jInputAttrDt.val()) {
                                             example.push(nodeArr[i]);
                                         }
                                     }
@@ -242,7 +286,12 @@
                     })
                 }                    
             } else {
-                example.push($('#' + jInputId));
+                if (jInputAttrNm.val()) {
+                    console.log($('#select-table').find('div.inner-row'));
+                } else {
+                    example.push($('#' + jInputId.val()));
+                }              
+                
             }
 
         }
