@@ -187,118 +187,127 @@
         // 버튼클릭이벤트 -- jQuery
         $('#jQuery').click(function() {
             
-            boundary = $('*');
+            boundary = $('body');
             jQueryResult = 0;
-            let example = new Array();
-            let nodeArr;
 
-            
+            // console.log($('#select-table div'));
             if (!jInputId.val() && !jInputNode.val() && !jInputAttrNm.val() && !jInputAttrDt.val()) {
                 console.log("입력 없음");
-                return $('#jQueryResult').text("결과: jQuery 개수 : " + jQueryResult);
             } else if (jInputId.val() && $('#' + jInputId.val()).length && !jInputNode.val() && !jInputAttrNm.val() && !jInputAttrDt.val()) {
-                jQueryResult = 1000;
-                return $('#jQueryResult').text("결과: jQuery 개수 : " + jQueryResult);
-            }
-
-
-            /* 검색 시작 */
-            if (jInputId.val() && $('#' + jInputId.val()).length) {
-                // 아이디값이 있고 다음 입력값이 있을때
-                searchByNode(example);
-                jQueryResult = example.length;
-            } else if (jInputNode.val()) {
-                // 아이디 없고 노드명 있을때
-                nodeArr = $(jInputNode.val());
-                if (jInputAttrNm.val()) {
-                    nodeArr.each(function(i) {
-                        if (nodeArr[i].hasAttribute(jInputAttrNm.val())) {
-                            example.push(nodeArr[i]);
-                        }
-                    })
-                    jQueryResult = example.length;
-                } else {
-                    jQueryResult = nodeArr.length;
-                }
-            } else if (jInputAttrNm.val()) {
-                //아이디 노드명 없고 속성명잇을떄
-                nodeArr = $("[" + jInputAttrNm.val() + "]");
-                if (jInputAttrDt.val()) {
-                    nodeArr.each(function(i) {
-                        if (nodeArr[i].getAttribute(jInputAttrNm.val()) == jInputAttrDt.val()) {     
-                            example.push(nodeArr[i]);
-                        }
-                        if (nodeArr[i].classList.length > 1) {
-                            for (let a = 0; a < nodeArr[i].classList.length; a++) {
-                                if (nodeArr[i].classList[a] == jInputAttrDt.val()) {
-                                    example.push(nodeArr[i]);
-                                }
-                            }
-                        }
-                    })               
-                    jQueryResult = example.length;
-                } else {
-                    jQueryResult = nodeArr.length;
-                }
+                jQueryResult = 1;
             } else {
-                // 속성값만 있을 때
-                console.log($("[value='alt']"))
-                // let count = 0;
-                // boundary.each(function(i) {
-                //     console.log(boundary);
-                //     if (this.hasAttribute(jInputAttrDt.val())) {
-                //         count++;
-                //     }
-                // })
-                // jQueryResult = count;
+                if (jInputId.val()) {
+                    boundary = $('#' + jInputId.val())
+                }
+                jQueryResult = search(boundary);
             }
-            console.log(example);
             
             $('#jQueryResult').text("결과: jQuery 개수 : " + jQueryResult);
         })
 
-        function searchByNode(example) {
+        // 검색 시작
+        function search(boundary) {
             if (jInputNode.val()) {
-                let nodeArr = $('#' + jInputId.val()).find(jInputNode.val());
-
-                if (jInputAttrNm.val()) {
-                    nodeArr.each(function(i) {
-                        if (nodeArr[i].hasAttribute(jInputAttrNm.val())) {
-                            if (jInputAttrDt.val()) {
-                                if (nodeArr[i].getAttribute(jInputAttrNm.val()) == jInputAttrDt.val()) {
-                                    example.push(nodeArr[i]);                                        
-                                }
-                                if (nodeArr[i].classList.length > 1) {
-                                    for (let a = 0; a < nodeArr[i].classList.length; a++) {
-                                        if (nodeArr[i].classList[a] == jInputAttrDt.val()) {
-                                            example.push(nodeArr[i]);
-                                        }
-                                    }
-                                }
-                            } else {
-                                example.push(nodeArr[i]);
-                            }
-                        }
-                    })
-                } else {
-                    nodeArr.each(function(i) {
-                        example.push(nodeArr[i]);
-                    })
-                }                    
+                return searchByNode(boundary);
+            } else if (jInputAttrNm.val()) {
+                return searchByAttrNm(boundary);
             } else {
-                if (jInputAttrNm.val()) {
-                    console.log($('#select-table').find('div.inner-row'));
-                } else {
-                    example.push($('#' + jInputId.val()));
-                }              
-                
+                return searchByAttDt(boundary);
             }
-
         }
 
+        // 노드명부터 있을 때 시작
+        function searchByNode(boundary) {
+            let count = 0;
+            let children = boundary.children();
+            if (boundary.children().length == 0) {return 0;}
+            children.each(function() {
+                if(this.nodeName == jInputNode.val().toUpperCase()) {
+                    if(jInputAttrNm.val()) {
+                        count = searchDtByNM(this, count);
+                    } else {
+                        if (jInputAttrDt.val()) {
+                            let element = $(this)[0];
+                            count = searchDtByNoNM(element, count);
+                        } else {
+                            count++;
+                        }
+                        
+                    }
+                }
+            })
+            count += searchByNode(boundary.children());
+            return count;
+        }
 
+        // 속성명부터 있을 때 시작
+        function searchByAttrNm(boundary) {
+            let count = 0;
+            let children = boundary.children();
+            if (boundary.children().length == 0) {return 0;}
+            children.each(function() {
+                count = searchDtByNM(this, count);
+            })
+            count += searchByAttrNm(boundary.children());
+            return count;
+        }
 
+        // 속성값만 있을 떄
+        function searchByAttDt(boundary) {
+            let count = 0;
+            let children = boundary.children();
+            if (boundary.children().length == 0) {return 0;}
+            children.each(function() {
+                let element = $(this)[0];
+                count = searchDtByNoNM(element, count);
+            })
+            count += searchByAttDt(boundary.children());
+            return count;
+        }
 
+        // 속성명 없을 때 속성값 찾기
+        function searchDtByNoNM(element, count) {
+            if (element.attributes.length > 0) {
+                // console.dir(element.attributes.length)
+
+                $(element).each(function() {
+                    console.dir(this.attributes);
+                    // if (this.value === jInputAttrDt.val()) {
+                    //     count++;
+                    // }
+                })
+
+                // if (element.classList.length > 1) {
+                //     for (let i = 0; i < element.classList.length; i++) {
+                //         if (element.classList[i] == jInputAttrDt.val()) {
+                //             count++;
+                //         }
+                //     }
+                // }
+            }
+            return count;
+        }
+
+        // 속성명 있을 때 속성값 찾기
+        function searchDtByNM(element, count) {
+            if (element.hasAttribute(jInputAttrNm.val())) {
+                if(jInputAttrDt.val()) {
+                    if (element.getAttribute(jInputAttrNm.val()) == jInputAttrDt.val()) {
+                        count++;
+                    }
+                    if (element.classList.length > 1) {
+                        for (let i = 0; i < element.classList.length; i++) {
+                            if (element.classList[i] == jInputAttrDt.val()) {
+                                count++;
+                            }
+                        }
+                    }
+                } else {
+                    count++;
+                }
+            }
+            return count;
+        }
     </script>
 </body>
 </html>
