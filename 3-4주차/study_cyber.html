@@ -9,6 +9,7 @@
             display: none;
         }
     </style>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
 </head>
 <body>
     <div id="select-table">
@@ -55,26 +56,7 @@
         <div id="javaScriptResult"></div>
     </div>
     <script>
-        let javaScriptBtn = document.getElementById('javaScript');
-        let boundary = document.body;
-        let result = 0;
-
-        // 버튼클릭이벤트
-        javaScriptBtn.addEventListener("click", () => {
-            const inputId = document.getElementById("inputId");
-            const inputNode = document.getElementById("inputNode");
-            const inputAttrNm = document.getElementById("inputAttrNm");
-            const inputAttrDt = document.getElementById("inputAttrDt");
-            boundary = document.body;
-            result = 0;
-            count = 0;
-
-
-            for (let node of document.body.childNodes) {
-                console.log(node); // 컬렉션 내의 모든 노드를 보여줍니다.
-            }
-
-        });
+        console.dir($('[attributeName="펀드"]'));
 
         
     </script>
