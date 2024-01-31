@@ -1,0 +1,97 @@
+<!DOCTYPE html>
+<html lang="ko">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>add_remove</title>
+    <script src="https://code.jquery.com/jquery-3.6.0.js"></script>
+    <link rel="stylesheet" type="text/css" href="/3-4주차/add_remove.css">
+</head>
+<body>
+    <div class="node-table">
+        <h3>체결(거래)</h3>
+        <table>
+            <thead>
+                <tr>
+                    <th>시간</th>
+                    <th>주가</th>
+                    <th>전일대비</th>
+                    <th>체결량</th>
+                    <th>누적거래량</th>
+                </tr>
+            </thead>
+            <tbody id="change">
+                <tr>
+                    <td>13:03:35</td>
+                    <td>750</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1,234,560</td>
+                </tr>
+                <tr>
+                    <td>14:03:35</td>
+                    <td>750</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1,234,560</td>
+                </tr>
+                <tr>
+                    <td>15:03:35</td>
+                    <td>750</td>
+                    <td>0</td>
+                    <td>0</td>
+                    <td>1,234,560</td>
+                </tr>
+            </tbody>
+        </table>
+        <div class="input-area">
+            <input type="text" class="input-box" id="time" value="0">
+            <input type="text" class="input-box" value="0" id="stock">
+            <input type="text" class="input-box" value="0" id="compare">
+            <input type="text" class="input-box" value="0" id="amount">
+            <input type="text" class="input-box" value="0" id="accumulate">
+        </div>
+        <div class="btn-area">
+            <button id="add_script">추가(JavaScript)</button>
+            <button id="rm_script">삭제(JavaScript)</button>
+            <button id="add_jQeury">추가(jQuery)</button>
+            <button id="rm_jQeury">삭제(jQuery)</button>
+        </div>
+    </div>
+    <script>
+        const add_script = document.getElementById("add_script");
+        const rm_script = document.getElementById("rm_script");
+
+        const time = document.getElementById("time");
+        const stock = document.getElementById("stock");
+        const compare = document.getElementById("compare");
+        const amount = document.getElementById("amount");
+        const accumulate = document.getElementById("accumulate");
+
+        const tbody = document.querySelector('#change');
+
+        /*JavaScript 마지막 row 추가*/
+        add_script.addEventListener("click", () => {
+            let add_row = document.createElement('tr');
+            add_row.innerHTML='<td>' + time.value + '</td><td>' + stock.value + '</td><td>' + compare.value + '</td><td>' + amount.value + '</td><td>' + accumulate.value + '</td>';
+            tbody.prepend(add_row);
+        })
+        /*JavaScript 첫번째 row 삭제*/ 
+        rm_script.addEventListener("click", () => {
+            console.log(tbody.lastElementChild);
+            tbody.lastElementChild.remove();
+        })
+
+
+        /*jQuery row 추가*/
+        $('#add_jQeury').click(() => {
+            let add_row = $('<tr><td>' + $('#time').val() + '</td><td>' + $('#stock').val() + '</td><td>' + $('#compare').val() + '</td><td>' + $('#amount').val() + '</td><td>' + $('#accumulate').val() + '</td></tr>');
+            $('#change').prepend(add_row);
+        })
+        /*jQuery row 삭제*/
+        $('#rm_jQeury').click(() => {
+            $('#change tr:last').remove();
+        })
+    </script>
+</body>
+</html>

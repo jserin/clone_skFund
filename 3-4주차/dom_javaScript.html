@@ -183,20 +183,22 @@
         const jInputNode = $("#inputNode");
         const jInputAttrNm = $("#inputAttrNm");
         const jInputAttrDt = $("#inputAttrDt");
+        const jInputId2 = $("#inputId").val().replace(/ /g, "qq");
         let boundary2 = $('body');
 
         // 버튼클릭이벤트 -- jQuery
         $('#jQuery').click(function() {
+
             boundary2 = $('body');
             jQueryResult = 0;
 
             if (!jInputId.val() && !jInputNode.val() && !jInputAttrNm.val() && !jInputAttrDt.val()) {
                 console.log("입력 없음");
-            } else if (jInputId.val() && $('#' + jInputId.val()).length && !jInputNode.val() && !jInputAttrNm.val() && !jInputAttrDt.val()) {
+            } else if (jInputId.val() && $('#' + jInputId.val().replace(/ /g, "qq")).length && !jInputNode.val() && !jInputAttrNm.val() && !jInputAttrDt.val()) {
                 jQueryResult = 1;
             } else {
                 if (jInputId.val()) {
-                    boundary2 = $('#' + jInputId.val())
+                    boundary2 = $('#' + jInputId.val().replace(/ /g, "qq"))
                 }
                 jQueryResult = search(boundary2);
             }
@@ -220,16 +222,16 @@
             let count = 0;
             
             if (jInputAttrNm.val()) {
-                boundary2 = boundary2.find(jInputNode.val());
+                boundary2 = boundary2.find(jInputNode.val().replace(/ /g, "qq"));
                 boundary2.each(function() {
                     let node = this;
                     $.each(this.attributes, function() {
-                        if (this.nodeName == jInputAttrNm.val()) {
+                        if (this.nodeName == jInputAttrNm.val().replace(/ /g, "qq")) {
                             if (jInputAttrDt.val()) {
-                                if ($(node).hasClass(jInputAttrDt.val())) {
+                                if ($(node).hasClass(jInputAttrDt.val().replace(/ /g, "qq"))) {
                                     count++;
                                 } else {
-                                    if (this.nodeValue == jInputAttrDt.val()) {
+                                    if (this.nodeValue == jInputAttrDt.val().replace(/ /g, "qq")) {
                                         count++;
                                     }
                                 }
@@ -240,13 +242,13 @@
                     })
                 })
             } else if (jInputAttrDt.val()) {
-                boundary2 = boundary2.find(jInputNode.val());
+                boundary2 = boundary2.find(jInputNode.val().replace(/ /g, "qq"));
                 boundary2.each(function() {
-                    if ($(this).hasClass(jInputAttrDt.val())) {
+                    if ($(this).hasClass(jInputAttrDt.val().replace(/ /g, "qq"))) {
                         count++;
                     } else {
                         $.each(this.attributes, function() {
-                            if (this.value == jInputAttrDt.val()) {
+                            if (this.value == jInputAttrDt.val().replace(/ /g, "qq")) {
                                 count++;
                             }
                         })
@@ -254,7 +256,7 @@
                 })
                 
             } else {
-                count = boundary2.find(jInputNode.val()).length;
+                count = boundary2.find(jInputNode.val().replace(/ /g, "qq")).length;
             }
             return count;
         }
@@ -266,13 +268,13 @@
             boundary2.find('*').each(function() {
                 let node = this;
                 $.each(this.attributes, function() {
-                    if (this.nodeName == jInputAttrNm.val()) {
+                    if (this.nodeName == jInputAttrNm.val().replace(/ /g, "qq")) {
                         
                         if (jInputAttrDt.val()) {
-                            if ($(node).hasClass(jInputAttrDt.val())) {
+                            if ($(node).hasClass(jInputAttrDt.val().replace(/ /g, "qq"))) {
                                 count++;
                             } else {
-                                if (this.nodeValue == jInputAttrDt.val()) {
+                                if (this.nodeValue == jInputAttrDt.val().replace(/ /g, "qq")) {
                                     count++;
                                 }
                             }
@@ -291,11 +293,11 @@
 
             boundary2.find('*').each(function() {
 
-                if ($(this).hasClass(jInputAttrDt.val())) {
+                if ($(this).hasClass(jInputAttrDt.val().replace(/ /g, "qq"))) {
                     count++;
                 } else {
                     $.each(this.attributes, function() {
-                        if (this.value == jInputAttrDt.val()) {
+                        if (this.value == jInputAttrDt.val().replace(/ /g, "qq")) {
                             count++;
                         }
                     })
