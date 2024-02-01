@@ -1,0 +1,145 @@
+* {margin:0; padding:0; text-decoration: none; color: #000000; font-family: 'NanumBarunGothic';}
+ul, li {margin:0; padding:0; list-style: none;}
+button {background: transparent;border: none;}
+
+body{
+    #calendar {
+        background: #e9f3f7;
+        width: 500px;
+        margin: 30px;
+        text-align: center;
+        border-radius: 20px;
+        position: relative;
+        button {
+            font-size: 20px;
+            color: #646464;
+            position: absolute;
+            top: 22px;
+            cursor: pointer;
+            &:first-child {
+                left: 150px;
+                opacity: 0.5;
+            }
+            &:nth-child(2) {
+                right: 150px;
+                opacity: 0.5;
+            }
+            &:nth-child(3) {
+                right: 30px;
+                font-size: 14px;
+                border: 1px solid gray;
+                border-radius: 20px;
+                padding: 3px 5px;
+                background: #FFFFFF;
+                font-family: 'NanumBarunGothicB';
+            }
+        }
+        div {
+            .year-month {
+                font-size: 24px;
+                font-family: 'NanumBarunGothicB';
+                padding: 20px;
+            }
+            .days {
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                .day {
+                    font-family: 'NanumBarunGothicB';
+                    color: #333333;
+                    &:first-child {
+                        color: #e44444;
+                    }
+                    &:last-child {
+                        color: #4d4bd1;
+                    }
+                }
+                
+            }
+            .dates {
+                box-sizing: border-box;
+                width: 100%;
+                display: grid;
+                grid-template-columns: 1fr 1fr 1fr 1fr 1fr 1fr 1fr;
+                row-gap: 15px;
+                padding: 15px 0;
+                .date {
+                    span {
+                        padding: 3px 6px 1px 6px;
+                        &:hover {
+                            background: white;
+                            border-radius: 20px;
+                            border-bottom: none;
+                            cursor: pointer;
+                        }
+                    }
+                    &:nth-child(7n+1) {
+                        span {
+                            color: #e44444;
+                        }
+                    }
+                    &:nth-child(7n) {
+                        span {
+                            color: #4d4bd1;
+                        }
+                    }
+                }
+            }
+        }
+    }
+    .event-area {
+        background: #e9f3f7;
+        width: 500px;
+        height: 300px;
+        margin: 30px;
+        border-radius: 20px;
+        .search-area {
+            height: 20%;
+            margin: 0 30px;
+            border-bottom: 1px solid lightgray;
+            display: flex;
+            align-items: center;
+            justify-content: center;
+            input {
+                height: 40%;
+                margin-right: 10px;
+                border: none;
+                border-radius: 20px;
+                padding-left: 20px;
+            }
+            button {
+                height: 40%;
+                background: #FFFFFF;
+                border-radius: 20px;
+                padding: 0 15px;
+                cursor: pointer;
+            }
+        }
+    }
+}
+.other {
+    opacity: 0.4;
+}
+.today {
+    span {
+        border-bottom: 3px double #1020683f;
+    }
+}
+
+
+
+/* font - noonnu.cc */
+@font-face {
+    font-family: 'NanumBarunGothic';
+    font-style: normal;
+    font-weight: 400;
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot');
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWeb.ttf') format('truetype');
+}
+
+@font-face {
+    font-family: 'NanumBarunGothicB';
+    font-style: normal;
+    font-weight: 700;
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot');
+    src: url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.eot?#iefix') format('embedded-opentype'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.woff') format('woff'), url('//cdn.jsdelivr.net/font-nanumlight/1.0/NanumBarunGothicWebBold.ttf') format('truetype')
+}
