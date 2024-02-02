@@ -1,6 +1,6 @@
 * {margin:0; padding:0; text-decoration: none; color: #000000; font-family: 'NanumBarunGothic';}
 ul, li {margin:0; padding:0; list-style: none;}
-button {background: transparent;border: none;}
+button {background: transparent; border: none;}
 
 body{
     #calendar {
@@ -63,23 +63,41 @@ body{
                 row-gap: 15px;
                 padding: 15px 0;
                 .date {
+                    position: relative;
                     span {
                         padding: 3px 6px 1px 6px;
+                        border-radius: 20px;
                         &:hover {
                             background: white;
-                            border-radius: 20px;
                             border-bottom: none;
                             cursor: pointer;
+                        }
+                        &:last-child {
+                            padding: 0;
+                            position: absolute;
+                            right: 12px;
+                            top: -8px;
+                            color: #ffa319;
+                            pointer-events: none;
+                            &:hover {
+                                background: none;
+                            }
                         }
                     }
                     &:nth-child(7n+1) {
                         span {
                             color: #e44444;
+                            &:last-child {
+                                color: #ffa319;
+                            }
                         }
                     }
                     &:nth-child(7n) {
                         span {
                             color: #4d4bd1;
+                            &:last-child {
+                                color: #ffa319;
+                            }
                         }
                     }
                 }
@@ -87,15 +105,12 @@ body{
         }
     }
     .event-area {
-        background: #e9f3f7;
         width: 500px;
-        height: 300px;
         margin: 30px;
-        border-radius: 20px;
         .search-area {
-            height: 20%;
-            margin: 0 30px;
-            border-bottom: 1px solid lightgray;
+            background: #e9f3f7;
+            height: 50px;
+            border-radius: 20px;
             display: flex;
             align-items: center;
             justify-content: center;
@@ -105,6 +120,9 @@ body{
                 border: none;
                 border-radius: 20px;
                 padding-left: 20px;
+                &:first-child {
+                    width: 25%;
+                }
             }
             button {
                 height: 40%;
@@ -114,15 +132,92 @@ body{
                 cursor: pointer;
             }
         }
+        .todoList-area {
+            background: #e9f3f7;
+            height: 300px;
+            border-radius: 20px;
+            margin-top: 30px;
+            padding: 20px;
+            .this-date {
+                font-size: 20px;
+                border-bottom: 1px solid lightgray;
+                padding-bottom: 10px;
+                span {
+                    font-family: 'NanumBarunGothicB';
+                    color:#333333;
+                    margin-right: 10px;
+                }
+            }
+            .todolist {
+                height: 100%;
+                .add-area {
+                    width: 100%;
+                    height: 20%;
+                    display: flex;
+                    align-items: center;
+                    justify-content: space-between;
+                    input {
+                        width: 80%;
+                        border: none;
+                        height: 50%;
+                        border-radius: 20px;
+                        padding-left: 10px;
+                    }
+                    button {
+                        height: 50%;
+                        width: 15%;
+                        background: #FFFFFF;
+                        border-radius: 20px;
+                        padding: 0 15px;
+                        cursor: pointer;
+                    }
+                }
+                .view-list {      
+                    ul {
+                        margin: 0 auto;
+                        width: 95%;
+                        height: 200px;
+                        scrollbar-width: thin;
+                        padding-left: 20px;
+                        overflow-y: scroll;
+                        li {
+                            word-wrap: break-word;
+                            margin-bottom: 5px;
+                            list-style: disc;
+                        }
+                    }
+                }
+            }
+        }
     }
 }
 .other {
     opacity: 0.4;
+    position: relative;
+    span {
+        &:last-child {
+            padding: 0;
+            position: absolute;
+            right: 12px;
+            top: -8px;
+            color: #7a7a7a7c;
+            user-select: none;
+        }
+    }
 }
 .today {
     span {
-        border-bottom: 3px double #1020683f;
+        background: #7e788842;
+        &:last-child {
+            background: transparent;
+        }
     }
+}
+.selected {
+    background: red;
+}
+.hidden {
+    display: none;
 }
 
 
