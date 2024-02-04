@@ -41,7 +41,7 @@ const calendarModule = (function() {
 
         dates.forEach((date, i) => {
             const condition = i >= thisFirstIndex && i < thisLastIndex + 1 ? 'date' : 'other';
-            dates[i] = `<div class=${condition}><span>${date}</span><span class="listDot">•</span></div>`;
+            dates[i] = `<div class=${condition}><span>${date}</span></div>`;
         });
         
         document.querySelector('.dates').innerHTML = dates.join('');
@@ -89,8 +89,6 @@ const calendarModule = (function() {
                 })
             });
         })
-
-        ///////////////// 20240202 일정 있는 곳 표시 ------ 해야함
     }
 
     function init() {
@@ -196,6 +194,7 @@ const calendarModule = (function() {
                 }
 
                 inputSchedule.value = ""
+                render();
             })
 
             render();

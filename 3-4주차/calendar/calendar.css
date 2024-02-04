@@ -72,32 +72,15 @@ body{
                             border-bottom: none;
                             cursor: pointer;
                         }
-                        &:last-child {
-                            padding: 0;
-                            position: absolute;
-                            right: 12px;
-                            top: -8px;
-                            color: #ffa319;
-                            pointer-events: none;
-                            &:hover {
-                                background: none;
-                            }
-                        }
                     }
                     &:nth-child(7n+1) {
                         span {
                             color: #e44444;
-                            &:last-child {
-                                color: #ffa319;
-                            }
                         }
                     }
                     &:nth-child(7n) {
                         span {
                             color: #4d4bd1;
-                            &:last-child {
-                                color: #ffa319;
-                            }
                         }
                     }
                 }
@@ -193,24 +176,10 @@ body{
 }
 .other {
     opacity: 0.4;
-    position: relative;
-    span {
-        &:last-child {
-            padding: 0;
-            position: absolute;
-            right: 12px;
-            top: -8px;
-            color: #7a7a7a7c;
-            user-select: none;
-        }
-    }
 }
 .today {
     span {
         background: #7e788842;
-        &:last-child {
-            background: transparent;
-        }
     }
 }
 .selected {
