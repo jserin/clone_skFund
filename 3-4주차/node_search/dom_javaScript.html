@@ -131,13 +131,7 @@
             for (let x = 0; x < boundary.attributes.length; x++) {
                 if (boundary.attributes[x].nodeName == inputAttrNm.value) {
                     if (inputAttrDt.value) {
-                        if (boundary.attributes[x].nodeValue == inputAttrDt.value) {
-                            num++;
-                        }
-
-                        num = checkClassList(boundary, num);
-
-                        return num;
+                        num = findByAttrDt(boundary);
                     } else {
                         num++;
                     }
@@ -152,10 +146,8 @@
                 if (boundary.attributes[x].nodeValue == inputAttrDt.value) {
                     num++;
                 }
+                num = checkClassList(boundary, num);
             }
-
-            num = checkClassList(boundary, num);
-
             return num;
         }
 
@@ -226,33 +218,13 @@
                 boundary2.each(function() {
                     let node = this;
                     $.each(this.attributes, function() {
-                        if (this.nodeName == jInputAttrNm.val().replace(/ /g, "qq")) {
-                            if (jInputAttrDt.val()) {
-                                if ($(node).hasClass(jInputAttrDt.val().replace(/ /g, "qq"))) {
-                                    count++;
-                                } else {
-                                    if (this.nodeValue == jInputAttrDt.val().replace(/ /g, "qq")) {
-                                        count++;
-                                    }
-                                }
-                            } else {
-                                count++;
-                            }
-                        }
+                        count += countByAttrNm(this, node);
                     })
                 })
             } else if (jInputAttrDt.val()) {
                 boundary2 = boundary2.find(jInputNode.val().replace(/ /g, "qq"));
                 boundary2.each(function() {
-                    if ($(this).hasClass(jInputAttrDt.val().replace(/ /g, "qq"))) {
-                        count++;
-                    } else {
-                        $.each(this.attributes, function() {
-                            if (this.value == jInputAttrDt.val().replace(/ /g, "qq")) {
-                                count++;
-                            }
-                        })
-                    }
+                    count += countByAttrDt(this);
                 })
                 
             } else {
@@ -268,20 +240,7 @@
             boundary2.find('*').each(function() {
                 let node = this;
                 $.each(this.attributes, function() {
-                    if (this.nodeName == jInputAttrNm.val().replace(/ /g, "qq")) {
-                        
-                        if (jInputAttrDt.val()) {
-                            if ($(node).hasClass(jInputAttrDt.val().replace(/ /g, "qq"))) {
-                                count++;
-                            } else {
-                                if (this.nodeValue == jInputAttrDt.val().replace(/ /g, "qq")) {
-                                    count++;
-                                }
-                            }
-                        } else {
-                            count++;
-                        }
-                    }
+                    count += countByAttrNm(this, node);
                 })
             })
             return count;
@@ -290,19 +249,37 @@
         // 속성값만 있을 떄
         function searchByAttDt(boundary2) {
             let count = 0;
-
             boundary2.find('*').each(function() {
-
-                if ($(this).hasClass(jInputAttrDt.val().replace(/ /g, "qq"))) {
-                    count++;
-                } else {
-                    $.each(this.attributes, function() {
-                        if (this.value == jInputAttrDt.val().replace(/ /g, "qq")) {
-                            count++;
-                        }
-                    })
-                }
+                count += countByAttrDt(this);
             })
+            return count;
+        }
+
+        // attrname 검색
+        function countByAttrNm(element, node) {
+            let count = 0;
+            if (element.nodeName == jInputAttrNm.val().replace(/ /g, "qq")) {
+                if (jInputAttrDt.val()) {
+                    count += countByAttrDt(node);
+                } else {
+                    count++;
+                }
+            }
+            return count;
+        }
+
+        // attr data 검색
+        function countByAttrDt(element) {
+            let count = 0;
+            if ($(element).hasClass(jInputAttrDt.val().replace(/ /g, "qq"))) {
+                count++;
+            } else {
+                $.each(element.attributes, function() {
+                    if (this.value == jInputAttrDt.val().replace(/ /g, "qq")) {
+                        count++;
+                    }
+                })
+            }
             return count;
         }
     </script>
