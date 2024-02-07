@@ -74,7 +74,6 @@
             boundary = document.body;
             scriptResult = 0;
 
-
             if ( inputId.value && !findById() ) {
                 console.log("id 결과 없음");
                 scriptResult = 0;
@@ -84,10 +83,10 @@
                 boundary = findById() ? document.getElementById(inputId.value) : boundary;
                 scriptResult = find(boundary);
             }
-
             document.getElementById("scriptResult").innerHTML = "결과: JavaScript 개수 : " + scriptResult;
         });
 
+        // script 공통 재귀함수
         function commonFunc(boundary, condition) {
             let num = 0;
             if ( boundary.childElementCount == 0) {return num;}
@@ -99,6 +98,7 @@
             return num;
         }
 
+        // script 찾기 root - return num;
         function find(boundary) {
             let num = 0;
             num += commonFunc(boundary, (condition) => {
@@ -113,6 +113,7 @@
             return num;
         }
 
+        // script 노드명 있을 때 검색
         function findByNode(boundary) {
             if (boundary.tagName == inputNode.value.toUpperCase()) {
                 if (inputAttrNm.value) {
@@ -126,6 +127,7 @@
             return 0;
         }
 
+        // script 속성명 있을 때 검색
         function findByAttrNm(boundary) {
             let num = 0;
             for (let x = 0; x < boundary.attributes.length; x++) {
@@ -140,35 +142,50 @@
             return num;
         }
 
+        // script 아이디로 노드 검색
+        function findById() {
+            return !!document.getElementById(inputId.value) ;
+        }
+
+        // script 속성값 있을 때 검색
         function findByAttrDt(boundary) {
             let num = 0;
             for (let x = 0; x < boundary.attributes.length; x++) {
                 if (boundary.attributes[x].nodeValue == inputAttrDt.value) {
                     num++;
                 }
+            }
+            if (num == 0) {
                 num = checkClassList(boundary, num);
             }
+
             return num;
         }
 
-        function findById() {
-            return !!document.getElementById(inputId.value) ;
-        }
-
+        // script 속성값 입력값 여러개
         function checkClassList(boundary, num) {
             if (boundary.classList.length > 1) {
-                for (let i = 0; i < boundary.classList.length; i++) {
-                    if (boundary.classList[i] == inputAttrDt.value) {
-                        num++;
+                let splitDt = inputAttrDt.value.split(' ');
+                let allCheck = true;
+                for (let i = 0; i < splitDt.length; i++) {
+                    let check = false;
+                    for (let x = 0; x < boundary.classList.length; x++) {
+                        if (splitDt[i] == boundary.classList[x]){
+                            check = true;
+                            break;
+                        }
                     }
+                    if (!check) {
+                        allCheck = false;
+                        break;
+                    }
+                }
+                if (allCheck) {
+                    num = 1;
                 }
             }
             return num;
         }
-
-
-
-
 
 
         const jInputId = $("#inputId");
@@ -271,7 +288,9 @@
         // attr data 검색
         function countByAttrDt(element) {
             let count = 0;
-            if ($(element).hasClass(jInputAttrDt.val().replace(/ /g, "qq"))) {
+            if ($(element).hasClass(jInputAttrDt.val())) {
+                count++;
+            } else if ($(element).hasClass(jInputAttrDt.val().replace(/ /g, "qq"))) {
                 count++;
             } else {
                 $.each(element.attributes, function() {
